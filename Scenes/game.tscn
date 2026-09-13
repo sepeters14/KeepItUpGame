@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://cusaopp38lepo"]
+
+[ext_resource type="Script" uid="uid://cwy745ng4o7t" path="res://Scripts/Global/global.gd" id="1_1l0tm"]
+[ext_resource type="Shader" uid="uid://db1lkbochiplo" path="res://Scripts/Shaders/scollingbackground.gdshader" id="2_v158k"]
+[ext_resource type="Texture2D" uid="uid://cc4yylh2wmwtg" path="res://Images/Backgrounds/BrickWallBackground.png" id="3_h4fw4"]
+[ext_resource type="Script" uid="uid://csu0r32qayl03" path="res://Scripts/UI/rich_text_label.gd" id="4_ldgsr"]
+[ext_resource type="Script" uid="uid://by0bftpaw3fa0" path="res://Scripts/Gameplay/hand.gd" id="5_o5yvi"]
+[ext_resource type="Script" uid="uid://dpngtpefaqq62" path="res://Scripts/Gameplay/balloon.gd" id="6_rku1e"]
+[ext_resource type="Texture2D" uid="uid://mqdyu2di6gx0" path="res://Images/Items/Balloon2.png" id="7_rfjv2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eow3j"]
+shader = ExtResource("2_v158k")
+shader_parameter/speed_x = 0.01
+shader_parameter/speed_y = 0.06
+shader_parameter/direction_x = 1.0
+shader_parameter/direction_y = -1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ryrav"]
+load_path = "res://.godot/imported/Hand2.png-7160e00870b3c6fcb1bd1ed166afe744.ctex"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ryrav"]
+radius = 39.0
+height = 96.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ryrav"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
+radius = 29.068884
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_feb5d"]
+size = Vector2(3105.25, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eow3j"]
+size = Vector2(3105.25, 167)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5wjh"]
+size = Vector2(3105.25, 357)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vef74"]
+size = Vector2(3105.25, 314)
+
+[node name="Scene" type="Node2D" unique_id=1013099189]
+
+[node name="Global" type="Node" parent="." unique_id=1673068272]
+script = ExtResource("1_1l0tm")
+
+[node name="Background" type="TextureRect" parent="." unique_id=2021146985]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_eow3j")
+offset_left = -1.0
+offset_top = -174.0
+offset_right = 1162.0
+offset_bottom = 989.0
+texture = ExtResource("3_h4fw4")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1690933642]
+position = Vector2(576, 325)
+
+[node name="Control" type="Control" parent="Camera2D" unique_id=1938640459]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -576.0
+offset_top = -325.0
+offset_right = -536.0
+offset_bottom = -285.0
+
+[node name="Score" type="RichTextLabel" parent="Camera2D/Control" unique_id=1816491479]
+layout_mode = 0
+offset_right = 280.0
+offset_bottom = 120.0
+theme_override_colors/default_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+theme_override_font_sizes/normal_font_size = 47
+bbcode_enabled = true
+text = "111"
+script = ExtResource("4_ldgsr")
+
+[node name="Hand" type="RigidBody2D" parent="." unique_id=2021676129]
+position = Vector2(554, 502)
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("5_o5yvi")
+
+[node name="Sprite2D" type="Sprite2D" parent="Hand" unique_id=135686971]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = SubResource("CompressedTexture2D_ryrav")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hand" unique_id=1239013488]
+polygon = PackedVector2Array(10, -1, 31, -8, 39, -12, 44, -5, 9, 15, -38, 3, -38, -8, -8, -3)
+
+[node name="Area2D" type="Area2D" parent="Hand" unique_id=771298196]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Area2D" unique_id=1047851684]
+position = Vector2(-1, -35)
+shape = SubResource("CapsuleShape2D_ryrav")
+one_way_collision_margin = 0.0
+
+[node name="Balloon" type="RigidBody2D" parent="." unique_id=589741743 groups=["item"]]
+position = Vector2(555, 134)
+mass = 0.879
+physics_material_override = SubResource("PhysicsMaterial_ryrav")
+gravity_scale = 0.6
+linear_damp = 1.5
+script = ExtResource("6_rku1e")
+
+[node name="Sprite2D" type="Sprite2D" parent="Balloon" unique_id=2123192791]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("7_rfjv2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Balloon" unique_id=1652467066]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_fc0e3")
+
+[node name="Level" type="Node2D" parent="." unique_id=969735533]
+
+[node name="Floor" type="StaticBody2D" parent="Level" unique_id=1622551466 groups=["floor"]]
+position = Vector2(576, 658)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor" unique_id=827630394 groups=["floor"]]
+shape = SubResource("RectangleShape2D_feb5d")
+
+[node name="Area2D" type="Area2D" parent="Level/Floor" unique_id=306401286]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/Area2D" unique_id=617002329 groups=["floor"]]
+position = Vector2(0, 71.5)
+shape = SubResource("RectangleShape2D_eow3j")
+debug_color = Color(1.0588765e-06, 0.57479674, 0.8276591, 0.41960785)
+
+[node name="Wall" type="StaticBody2D" parent="Level" unique_id=1310451127]
+position = Vector2(-9, 62)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Wall" unique_id=1660018745]
+position = Vector2(-962, 168.50005)
+shape = SubResource("RectangleShape2D_j5wjh")
+
+[node name="Wall2" type="StaticBody2D" parent="Level" unique_id=1590195856]
+position = Vector2(1163, 73)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Wall2" unique_id=1871347946]
+position = Vector2(-967.375, -147)
+shape = SubResource("RectangleShape2D_vef74")
+
+[node name="Ceiling" type="StaticBody2D" parent="Level" unique_id=1434829394]
+position = Vector2(576, -2444)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Ceiling" unique_id=2102337614]
+shape = SubResource("RectangleShape2D_feb5d")
+
+[connection signal="body_entered" from="Hand/Area2D" to="Hand" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Hand/Area2D" to="Hand" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Level/Floor/Area2D" to="Balloon" method="_on_area_2d_body_entered"]

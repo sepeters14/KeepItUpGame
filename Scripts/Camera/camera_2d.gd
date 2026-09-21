@@ -23,28 +23,28 @@ func _process(delta):
 	if !targets:
 		return
 	# Keep the camera centered between the targets
-	var p = Vector2.ZERO
+	var target_position = Vector2.ZERO
 	for target in targets:
-		p += target.global_position
-	p /= targets.size()
-	global_position = lerp(global_position, p, move_speed)
+		target_position += target.global_position
+	target_position /= targets.size()
+	global_position = lerp(global_position, target_position, move_speed)
 	# Find the zoom that will contain all targets
-	var r = Rect2(global_position, Vector2.ONE)
+	var rect = Rect2(global_position, Vector2.ONE)
 	for target in targets:
-		r = r.expand(target.global_position)
-	r = r.grow_individual(margin.x, margin.y, margin.x, margin.y)
-	var d = max(r.size.x, r.size.y)
-	var z
-	if r.size.x > r.size.y * screen_size.aspect():
-		z = clamp(r.size.x / screen_size.x, min_zoom, max_zoom)
+		rect = rect.expand(target.global_position)
+	rect = rect.grow_individual(margin.x, margin.y, margin.x, margin.y)
+	var d = max(rect.size.x, rect.size.y)
+	var zoom_value
+	if rect.size.x > rect.size.y * screen_size.aspect():
+		zoom_value = clamp(rect.size.x / screen_size.x, min_zoom, max_zoom)
 	else:
-		z = clamp(r.size.y / screen_size.y, min_zoom, max_zoom)
-	zoom = lerp(zoom, Vector2.ONE / z, zoom_speed)
+		zoom_value = clamp(rect.size.y / screen_size.y, min_zoom, max_zoom)
+	zoom = lerp(zoom, Vector2.ONE / zoom_value, zoom_speed)
 
-func add_target(t):
-	if not t in targets:
-		targets.append(t)
+func add_target(target):
+	if not target in targets:
+		targets.append(target)
 
-func remove_target(t):
-	if t in targets:
-		targets.erase(t)
+func remove_target(target):
+	if target in targets:
+		targets.erase(target)

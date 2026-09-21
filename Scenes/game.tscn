@@ -5,14 +5,14 @@
 [ext_resource type="Shader" uid="uid://db1lkbochiplo" path="res://Scripts/Shaders/scollingbackground.gdshader" id="2_v158k"]
 [ext_resource type="Texture2D" uid="uid://cc4yylh2wmwtg" path="res://Images/Backgrounds/BrickWallBackground.png" id="3_h4fw4"]
 [ext_resource type="Script" uid="uid://csu0r32qayl03" path="res://Scripts/UI/rich_text_label.gd" id="4_ldgsr"]
-[ext_resource type="Script" uid="uid://b7oc55g2v7ch4" path="res://Scripts/Camera/camera_2d.gd" id="4_o5yvi"]
-[ext_resource type="Script" uid="uid://by0bftpaw3fa0" path="res://Scripts/Gameplay/hand.gd" id="5_o5yvi"]
+[ext_resource type="Script" uid="uid://0ojlp0d87l17" path="res://Scripts/Gameplay/hand.gd" id="5_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://bumhl5fapi8wh" path="res://Images/Backgrounds/Border.png" id="5_rku1e"]
-[ext_resource type="Texture2D" uid="uid://cbscajr4be1sr" path="res://Images/Hands/Hand2.png" id="6_h4fw4"]
-[ext_resource type="Shader" uid="uid://catahloct7w5t" path="res://Scripts/Shaders/change_colour.gdshader" id="6_rfjv2"]
 [ext_resource type="Script" uid="uid://dpngtpefaqq62" path="res://Scripts/Gameplay/balloon.gd" id="6_rku1e"]
 [ext_resource type="Texture2D" uid="uid://mqdyu2di6gx0" path="res://Images/Items/Balloon/Balloon2.png" id="7_rfjv2"]
 [ext_resource type="Texture2D" uid="uid://bggbsbcc051k1" path="res://Images/Items/Balloon/Balloon2_5.png" id="8_v158k"]
+[ext_resource type="Texture2D" uid="uid://0s6i1ot3f8lt" path="res://Images/Hands/Hand4_open.png" id="9_nb51f"]
+[ext_resource type="Texture2D" uid="uid://ywhdx68m0app" path="res://Images/Hands/Hand4_poke.png" id="10_nb51f"]
+[ext_resource type="Texture2D" uid="uid://cqkfnb4un7gn2" path="res://Images/Hands/Hand4_closed.png" id="10_rfjv2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eow3j"]
 shader = ExtResource("2_v158k")
@@ -21,9 +21,413 @@ shader_parameter/speed_y = 0.06
 shader_parameter/direction_x = 1.0
 shader_parameter/direction_y = -1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1phco"]
-shader = ExtResource("6_rfjv2")
-shader_parameter/my_color = Color(14.102987, 0, 0, 1)
+[sub_resource type="Animation" id="Animation_ewbju"]
+resource_name = "ClosedHand"
+length = 0.23333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandOpenCollisionPolygon2D2:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandOpenCollisionPolygon2D2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HandClosedCollisionPolygon2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HandClosedCollisionPolygon2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HandPointCollisionPolygon2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HandPointCollisionPolygon2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HandOpen:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_nb51f"]
+resource_name = "OpenHandSwing"
+length = 0.23333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandOpenCollisionPolygon2D2:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandOpenCollisionPolygon2D2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HandClosedCollisionPolygon2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HandClosedCollisionPolygon2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HandPointCollisionPolygon2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HandPointCollisionPolygon2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HandOpen:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.1815142422074099, -3.0211649352021843]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HandOpenCollisionPolygon2D2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.22774953),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1.6666666, 17.5), Vector2(-1.667, -57.355)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HandOpen:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_85qyi"]
+resource_name = "PointHand"
+length = 0.23333333
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandOpenCollisionPolygon2D2:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandOpenCollisionPolygon2D2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HandClosedCollisionPolygon2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HandClosedCollisionPolygon2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HandPointCollisionPolygon2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HandPointCollisionPolygon2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HandOpen:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_nnt18"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandOpenCollisionPolygon2D2:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandOpenCollisionPolygon2D2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HandClosedCollisionPolygon2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HandClosedCollisionPolygon2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HandPointCollisionPolygon2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HandPointCollisionPolygon2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HandOpen:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HandOpenCollisionPolygon2D2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1.6666666, 17.5)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HandOpen:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ewbju"]
+_data = {
+&"ClosedHand": SubResource("Animation_ewbju"),
+&"OpenHandSwing": SubResource("Animation_nb51f"),
+&"PointHand": SubResource("Animation_85qyi"),
+&"RESET": SubResource("Animation_nnt18")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ryrav"]
 radius = 39.0
@@ -54,16 +458,16 @@ region = Rect2(96, 0, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_h4fw4"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_v158k")
 }, {
-"duration": 1.0,
+"duration": 0.1,
 "texture": SubResource("AtlasTexture_h4fw4")
 }, {
-"duration": 1.0,
+"duration": 0.1,
 "texture": SubResource("AtlasTexture_ldgsr")
 }, {
-"duration": 1.0,
+"duration": 0.1,
 "texture": SubResource("AtlasTexture_o5yvi")
 }],
 "loop": false,
@@ -72,7 +476,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_feb5d"]
-size = Vector2(3105.25, 43)
+size = Vector2(1160, 5.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eow3j"]
 size = Vector2(3105.25, 167)
@@ -95,10 +499,10 @@ script = ExtResource("1_1l0tm")
 texture_filter = 1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_eow3j")
-offset_left = -429.0
-offset_top = -334.0
-offset_right = 210.36224
-offset_bottom = 137.82532
+offset_left = -399.0
+offset_top = -337.0
+offset_right = 240.36224
+offset_bottom = 134.82532
 scale = Vector2(1.8799982, 2.5200005)
 texture = ExtResource("3_h4fw4")
 
@@ -106,10 +510,10 @@ texture = ExtResource("3_h4fw4")
 texture_filter = 1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_eow3j")
-offset_left = 773.0
-offset_top = -334.0
-offset_right = 1412.3622
-offset_bottom = 137.82532
+offset_left = 771.00006
+offset_top = -337.0
+offset_right = 1410.3623
+offset_bottom = 134.82532
 scale = Vector2(1.8799982, 2.5200005)
 texture = ExtResource("3_h4fw4")
 
@@ -137,11 +541,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Border3" type="TextureRect" parent="Parallax2D" unique_id=314864877]
 texture_filter = 1
 texture_repeat = 2
-material = SubResource("ShaderMaterial_1phco")
-offset_left = -575.0
-offset_top = 851.0
-offset_right = 644.682
-offset_bottom = 1990.2854
+offset_left = -539.00006
+offset_top = 561.99994
+offset_right = 680.68195
+offset_bottom = 1701.2854
 scale = Vector2(1.8799982, 2.5200005)
 texture = ExtResource("5_rku1e")
 
@@ -155,21 +558,58 @@ offset_bottom = -1992.7146
 scale = Vector2(1.8799982, 2.5200005)
 texture = ExtResource("5_rku1e")
 
-[node name="MultiTargetCamera2D" type="Camera2D" parent="." unique_id=1690933642 node_paths=PackedStringArray("balloon")]
-position = Vector2(576, 325)
-zoom = Vector2(0.5, 0.5)
-script = ExtResource("4_o5yvi")
-balloon = NodePath("../Balloon")
+[node name="MultiTargetCamera2D" type="Camera2D" parent="." unique_id=1690933642]
+position = Vector2(575, 518)
 
-[node name="Control" type="Control" parent="MultiTargetCamera2D" unique_id=1938640459]
+[node name="Hand" type="CharacterBody2D" parent="." unique_id=1999486028]
+position = Vector2(556, 775)
+scale = Vector2(1.2, 1.2)
+collision_layer = 3
+script = ExtResource("5_o5yvi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hand" unique_id=1992661677]
+libraries/ = SubResource("AnimationLibrary_ewbju")
+
+[node name="HandClosedCollisionPolygon2D" type="CollisionPolygon2D" parent="Hand" unique_id=1239013488]
+visible = false
+polygon = PackedVector2Array(17, 10, 3, 20, -13, 12, -17, -9, 0, -20, 16, -12)
+
+[node name="HandClosed" type="Sprite2D" parent="Hand/HandClosedCollisionPolygon2D" unique_id=135686971]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("10_rfjv2")
+
+[node name="HandOpenCollisionPolygon2D2" type="CollisionPolygon2D" parent="Hand" unique_id=1627033249]
+position = Vector2(-1.6666666, 17.5)
+rotation = -0.18151425
+polygon = PackedVector2Array(88.83893, 65.29822, -50.500366, 39.72467, -74.17273, -39.030823, 33.38745, 2.7387085, 135.22003, -7.3780518)
+
+[node name="HandOpen" type="Sprite2D" parent="Hand" unique_id=1569667590]
+texture_filter = 1
+position = Vector2(-1.3858948, 23.111633)
+scale = Vector2(2.0000002, 2.0000002)
+texture = ExtResource("9_nb51f")
+offset = Vector2(14.314026, 0.21917725)
+
+[node name="HandPointCollisionPolygon2D" type="CollisionPolygon2D" parent="Hand" unique_id=1619847491]
+visible = false
+position = Vector2(-2.5, -10)
+polygon = PackedVector2Array(16.666687, -1.666687, 16.666687, 17.5, 10.8333435, 25.833313, -4.1666565, 26.666687, -15, 15.833313, -15, 0, -7.5, 0, -7.5, -27.5, 0, -27.5, -0.833313, -9.166687)
+
+[node name="HandPoint" type="Sprite2D" parent="Hand/HandPointCollisionPolygon2D" unique_id=137000443]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("10_nb51f")
+
+[node name="Control" type="Control" parent="Hand" unique_id=1938640459]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -1000.0
-offset_top = -650.0
-offset_right = -960.0
-offset_bottom = -610.0
+offset_left = -109.0
+offset_top = -132.0
+offset_right = -69.0
+offset_bottom = -92.0
 
-[node name="Score" type="RichTextLabel" parent="MultiTargetCamera2D/Control" unique_id=1816491479]
+[node name="Score" type="RichTextLabel" parent="Hand/Control" unique_id=1816491479]
 layout_mode = 0
 offset_right = 280.0
 offset_bottom = 120.0
@@ -179,36 +619,25 @@ bbcode_enabled = true
 text = "111"
 script = ExtResource("4_ldgsr")
 
-[node name="Hand" type="RigidBody2D" parent="." unique_id=2021676129]
-position = Vector2(554, 502)
-gravity_scale = 0.0
-lock_rotation = true
-freeze = true
-freeze_mode = 1
-contact_monitor = true
-max_contacts_reported = 1
-script = ExtResource("5_o5yvi")
+[node name="LeaveForPointsArea" type="Area2D" parent="Hand" unique_id=771298196]
+visible = false
+collision_layer = 3
+collision_mask = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Hand" unique_id=135686971]
-texture_filter = 1
-scale = Vector2(2, 2)
-texture = ExtResource("6_h4fw4")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hand" unique_id=1239013488]
-polygon = PackedVector2Array(10, -1, 31, -8, 39, -12, 44, -5, 9, 15, -38, 3, -38, -8, -8, -3)
-
-[node name="Area2D" type="Area2D" parent="Hand" unique_id=771298196]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Area2D" unique_id=1047851684]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/LeaveForPointsArea" unique_id=1047851684]
 position = Vector2(-1, -35)
 shape = SubResource("CapsuleShape2D_ryrav")
 one_way_collision_margin = 0.0
 
 [node name="Balloon" type="RigidBody2D" parent="." unique_id=589741743 groups=["item"]]
 position = Vector2(555, 134)
+collision_layer = 2
+collision_mask = 2
 mass = 0.879
 physics_material_override = SubResource("PhysicsMaterial_ryrav")
 gravity_scale = 0.6
+continuous_cd = 1
+contact_monitor = true
 linear_damp = 1.5
 script = ExtResource("6_rku1e")
 
@@ -231,12 +660,17 @@ animation = &"pop"
 
 [node name="Floor" type="StaticBody2D" parent="Level" unique_id=1622551466 groups=["floor"]]
 position = Vector2(576, 658)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor" unique_id=827630394 groups=["floor"]]
 position = Vector2(0, 216)
 shape = SubResource("RectangleShape2D_feb5d")
 
 [node name="Area2D" type="Area2D" parent="Level/Floor" unique_id=306401286]
+position = Vector2(12, -8)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor/Area2D" unique_id=617002329 groups=["floor"]]
 position = Vector2(2, 277)
@@ -244,29 +678,41 @@ shape = SubResource("RectangleShape2D_eow3j")
 debug_color = Color(1.0588765e-06, 0.57479674, 0.8276591, 0.41960785)
 
 [node name="Wall" type="StaticBody2D" parent="Level" unique_id=1310451127]
-position = Vector2(-9, 62)
+position = Vector2(72, 69)
 rotation = 1.5707964
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Wall" unique_id=1660018745]
-position = Vector2(-766, 603.00006)
+position = Vector2(-750, 253.00003)
 shape = SubResource("RectangleShape2D_j5wjh")
 
 [node name="Wall2" type="StaticBody2D" parent="Level" unique_id=1590195856]
 position = Vector2(1163, 73)
 rotation = 1.5707964
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Wall2" unique_id=1871347946]
-position = Vector2(-765, -584)
+position = Vector2(-774, -148)
 shape = SubResource("RectangleShape2D_vef74")
 
 [node name="Ceiling" type="StaticBody2D" parent="Level" unique_id=1434829394]
 position = Vector2(576, -2444)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Ceiling" unique_id=2102337614]
-position = Vector2(-3, 2162)
+position = Vector2(3, 2416)
 shape = SubResource("RectangleShape2D_feb5d")
-disabled = true
 
-[connection signal="body_entered" from="Hand/Area2D" to="Hand" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Hand/Area2D" to="Hand" method="_on_area_2d_body_exited"]
+[node name="HandStopper" type="StaticBody2D" parent="Level" unique_id=827039175]
+position = Vector2(-3, 690)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/HandStopper" unique_id=400427579]
+position = Vector2(579, -132)
+shape = SubResource("RectangleShape2D_feb5d")
+
+[connection signal="body_entered" from="Hand/LeaveForPointsArea" to="Hand" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Hand/LeaveForPointsArea" to="Hand" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Level/Floor/Area2D" to="Balloon" method="_on_area_2d_body_entered"]

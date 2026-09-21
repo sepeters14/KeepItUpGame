@@ -1,19 +1,32 @@
-extends RigidBody2D
+extends CharacterBody2D
 
 var in_hand
 
-func _physics_process(delta):
-	position = get_global_mouse_position()
+@onready var animation_player = $AnimationPlayer
 
-func _input(event):
-	if event is InputEventMouseMotion:
-		if event.get_relative().x > 0:
-			#print("Moving right")
-			rotate_hand_right()
-			
-		if event.get_relative().x < 0:
-			#print("Moving left")
-			rotate_hand_left()
+@export var speed = 400
+
+func get_input():
+	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	velocity = input_direction * speed
+	if Input.is_action_pressed("action_2"):
+		animation_player.play("PointHand")
+	elif Input.is_action_pressed("action_1"):
+		animation_player.play("OpenHandSwing")
+	else:
+		animation_player.play("ClosedHand")
+func _physics_process(delta):
+	get_input()
+	move_and_slide()
+
+#func _input(event):
+	#if event.get_relative().x > 0:
+		##print("Moving right")
+		#rotate_hand_right()
+		#
+	#if event.get_relative().x < 0:
+		##print("Moving left")
+		#rotate_hand_left()
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("item"):

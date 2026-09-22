@@ -17,6 +17,9 @@ extends Camera2D
 
 var targets = []  # Array of targets to be tracked.
 
+var knockback: Vector2 =  Vector2.ZERO
+var knockback_timer: float = 0.0
+
 @onready var screen_size = get_viewport_rect().size
 
 func _process(delta):

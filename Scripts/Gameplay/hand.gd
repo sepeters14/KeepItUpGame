@@ -38,6 +38,11 @@ func _on_area_2d_body_exited(body):
 			in_hand = false
 			Global.score = Global.score + 1
 
+func _on_open_hand_knockack_area_body_entered(body):
+	if body.is_in_group("item"):
+		var knockback_direction = (body.global_position - global_position).normalized()
+		body.apply_knockback(knockback_direction, 800.0, 0.12)
+
 func rotate_hand_right():
 	rotation = deg_to_rad(14.0)
 func rotate_hand_left():

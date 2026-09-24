@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var in_hand
+var playing_open_hand_anim = false
 
 @onready var animation_player = $AnimationPlayer
 
@@ -10,10 +11,16 @@ func get_input():
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input_direction * speed
 	if Input.is_action_pressed("action_2"):
+		playing_open_hand_anim = false
 		animation_player.play("PointHand")
 	elif Input.is_action_pressed("action_1"):
-		animation_player.play("OpenHandSwing")
+		print(playing_open_hand_anim)
+		if playing_open_hand_anim == false:
+			playing_open_hand_anim = true
+			print(playing_open_hand_anim)
+			animation_player.play("OpenHandSwing")
 	else:
+		playing_open_hand_anim = false
 		animation_player.play("ClosedHand")
 func _physics_process(delta):
 	get_input()

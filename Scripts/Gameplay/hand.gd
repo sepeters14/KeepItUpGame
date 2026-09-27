@@ -5,11 +5,27 @@ var playing_open_hand_anim = false
 
 @onready var animation_player = $AnimationPlayer
 
-@export var speed = 400
+@export var gravity = 20
+@export var jump_force = 400
+@export var walk_speed = 400
 
 func get_input():
-	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = input_direction * speed
+	#var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var input_direction
+	if(Input.is_action_pressed("move_left")):
+		velocity.x = -walk_speed
+	elif(Input.is_action_pressed("move_right")):
+		velocity.x = walk_speed
+	else:
+		velocity.x = 0
+	
+	if(Input.is_action_just_pressed("jump") and is_on_floor()):
+		velocity.y -= jump_force
+	if(!is_on_floor() and Input.is_action_just_released("jump")):
+		velocity.y = gravity * 2
+	if !is_on_floor():
+		velocity.y += gravity
+	
 	if Input.is_action_pressed("action_2"):
 		playing_open_hand_anim = false
 		animation_player.play("PointHand")

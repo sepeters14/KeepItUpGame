@@ -27,70 +27,46 @@ length = 0.23333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HandClosedCollisionPolygon2D:disabled")
+tracks/0/path = NodePath("HandPointCollisionPolygon2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HandClosedCollisionPolygon2D:visible")
+tracks/1/path = NodePath("HandPointCollisionPolygon2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HandPointCollisionPolygon2D:disabled")
+tracks/2/path = NodePath("HandOpen:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HandPointCollisionPolygon2D:visible")
+tracks/3/path = NodePath("OpenHandKnockackArea:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("HandOpen:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("OpenHandKnockackArea:monitoring")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -103,7 +79,7 @@ length = 0.23333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HandClosedCollisionPolygon2D:disabled")
+tracks/0/path = NodePath("HandPointCollisionPolygon2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -115,7 +91,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HandClosedCollisionPolygon2D:visible")
+tracks/1/path = NodePath("HandPointCollisionPolygon2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -127,58 +103,34 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HandPointCollisionPolygon2D:disabled")
+tracks/2/path = NodePath("HandOpen:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.1815142422074099, -3.0211649352021843]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HandPointCollisionPolygon2D:visible")
+tracks/3/path = NodePath("HandOpen:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HandOpen:rotation")
+tracks/4/path = NodePath("OpenHandKnockackArea:monitoring")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.16666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-0.1815142422074099, -3.0211649352021843]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("HandOpen:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("OpenHandKnockackArea:monitoring")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -192,31 +144,31 @@ loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HandClosedCollisionPolygon2D:disabled")
+tracks/0/path = NodePath("HandPointCollisionPolygon2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HandClosedCollisionPolygon2D:visible")
+tracks/1/path = NodePath("HandPointCollisionPolygon2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HandPointCollisionPolygon2D:disabled")
+tracks/2/path = NodePath("HandOpen:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -228,34 +180,10 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HandPointCollisionPolygon2D:visible")
+tracks/3/path = NodePath("OpenHandKnockackArea:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("HandOpen:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("OpenHandKnockackArea:monitoring")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -267,7 +195,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HandClosedCollisionPolygon2D:disabled")
+tracks/0/path = NodePath("HandPointCollisionPolygon2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -279,7 +207,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HandClosedCollisionPolygon2D:visible")
+tracks/1/path = NodePath("HandPointCollisionPolygon2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -291,58 +219,34 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HandPointCollisionPolygon2D:disabled")
+tracks/2/path = NodePath("HandOpen:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HandPointCollisionPolygon2D:visible")
+tracks/3/path = NodePath("HandOpen:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HandOpen:rotation")
+tracks/4/path = NodePath("OpenHandKnockackArea:monitoring")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("HandOpen:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("OpenHandKnockackArea:monitoring")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -356,6 +260,9 @@ _data = {
 &"PointHand": SubResource("Animation_85qyi"),
 &"RESET": SubResource("Animation_nnt18")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfjv2"]
+size = Vector2(21.666687, 35.833344)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rfjv2"]
 radius = 38.559124
@@ -417,6 +324,8 @@ size = Vector2(3105.25, 357)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vef74"]
 size = Vector2(3105.25, 314)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1phco"]
 
 [node name="Level" type="Node2D" unique_id=1013099189]
 script = ExtResource("1_o5yvi")
@@ -501,14 +410,14 @@ script = ExtResource("5_o5yvi")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Hand" unique_id=1992661677]
 libraries/ = SubResource("AnimationLibrary_ewbju")
 
-[node name="HandClosedCollisionPolygon2D" type="CollisionPolygon2D" parent="Hand" unique_id=1239013488]
-visible = false
-polygon = PackedVector2Array(17, 10, 3, 20, -13, 12, -17, -9, 0, -20, 16, -12)
-
-[node name="HandClosed" type="Sprite2D" parent="Hand/HandClosedCollisionPolygon2D" unique_id=135686971]
+[node name="HandClosed" type="Sprite2D" parent="Hand" unique_id=135686971]
 texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("10_rfjv2")
+
+[node name="HandClosedCollisionShape" type="CollisionShape2D" parent="Hand" unique_id=1478000859]
+position = Vector2(0.8333435, 7.916687)
+shape = SubResource("RectangleShape2D_rfjv2")
 
 [node name="OpenHandKnockackArea" type="Area2D" parent="Hand" unique_id=163372700]
 visible = false
@@ -559,7 +468,7 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/LeaveForPointsArea" unique_id=1047851684]
-position = Vector2(-0.8333232, -22.5)
+position = Vector2(-0.8333232, -45.833332)
 shape = SubResource("CapsuleShape2D_ryrav")
 one_way_collision_margin = 0.0
 
@@ -593,7 +502,7 @@ animation = &"pop"
 [node name="Level" type="Node2D" parent="." unique_id=969735533]
 
 [node name="Floor" type="StaticBody2D" parent="Level" unique_id=1622551466 groups=["floor"]]
-position = Vector2(576, 658)
+position = Vector2(577, 653)
 collision_layer = 3
 collision_mask = 3
 
@@ -637,7 +546,7 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Ceiling" unique_id=2102337614]
-position = Vector2(3, 2416)
+position = Vector2(3, 1988)
 shape = SubResource("RectangleShape2D_feb5d")
 
 [node name="HandStopper" type="StaticBody2D" parent="Level" unique_id=827039175]
@@ -646,6 +555,15 @@ position = Vector2(-3, 690)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/HandStopper" unique_id=400427579]
 position = Vector2(579, -147.0625)
 shape = SubResource("RectangleShape2D_feb5d")
+disabled = true
+
+[node name="ObjectSpawnArea2d" type="Area2D" parent="." unique_id=560767676]
+position = Vector2(546, -184)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectSpawnArea2d" unique_id=520281414]
+position = Vector2(29.999998, 0)
+scale = Vector2(53.84, 6.120001)
+shape = SubResource("RectangleShape2D_1phco")
 
 [connection signal="body_entered" from="Hand/OpenHandKnockackArea" to="Hand" method="_on_open_hand_knockack_area_body_entered"]
 [connection signal="body_entered" from="Hand/LeaveForPointsArea" to="Hand" method="_on_area_2d_body_entered"]

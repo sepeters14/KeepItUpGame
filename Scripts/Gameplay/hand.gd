@@ -9,6 +9,9 @@ var playing_open_hand_anim = false
 @export var jump_force = 400
 @export var walk_speed = 400
 
+@export var knockback_force: float = 800.0
+@export var knockback_duration: float  = 0.12
+
 func get_input():
 	#var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var input_direction
@@ -30,10 +33,8 @@ func get_input():
 		playing_open_hand_anim = false
 		animation_player.play("PointHand")
 	elif Input.is_action_pressed("action_1"):
-		print(playing_open_hand_anim)
 		if playing_open_hand_anim == false:
 			playing_open_hand_anim = true
-			print(playing_open_hand_anim)
 			animation_player.play("OpenHandSwing")
 	else:
 		playing_open_hand_anim = false
@@ -64,7 +65,13 @@ func _on_area_2d_body_exited(body):
 func _on_open_hand_knockack_area_body_entered(body):
 	if body.is_in_group("item"):
 		var knockback_direction = (body.global_position - global_position).normalized()
-		body.apply_knockback(knockback_direction, 800.0, 0.12)
+		body.apply_knockback(knockback_direction, knockback_force, knockback_duration)
+
+
+func _on_hand_point_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("item"):
+		print("is in pointer area")
+		body.apply_knockback(Vector2.UP, knockback_force, knockback_duration)
 
 func rotate_hand_right():
 	rotation = deg_to_rad(14.0)

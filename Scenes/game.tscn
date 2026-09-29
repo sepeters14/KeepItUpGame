@@ -8,17 +8,11 @@
 [ext_resource type="Script" uid="uid://0ojlp0d87l17" path="res://Scripts/Gameplay/hand.gd" id="5_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://bumhl5fapi8wh" path="res://Images/Backgrounds/Border.png" id="5_rku1e"]
 [ext_resource type="Texture2D" uid="uid://0s6i1ot3f8lt" path="res://Images/Hands/Hand4_open.png" id="9_nb51f"]
+[ext_resource type="Texture2D" uid="uid://cysxcffiuvwa7" path="res://Images/Backgrounds/Background1.png" id="10_1phco"]
 [ext_resource type="Texture2D" uid="uid://ywhdx68m0app" path="res://Images/Hands/Hand4_poke.png" id="10_nb51f"]
 [ext_resource type="Texture2D" uid="uid://cqkfnb4un7gn2" path="res://Images/Hands/Hand4_closed.png" id="10_rfjv2"]
 [ext_resource type="PackedScene" uid="uid://qbq3bbjiqlge" path="res://Scenes/Items/balloon.tscn" id="11_rku1e"]
 [ext_resource type="Script" uid="uid://c2bh8jb54t37g" path="res://Scripts/Gameplay/object_spawner.gd" id="14_1phco"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eow3j"]
-shader = ExtResource("2_v158k")
-shader_parameter/speed_x = 0.01
-shader_parameter/speed_y = 0.06
-shader_parameter/direction_x = 1.0
-shader_parameter/direction_y = -1.0
 
 [sub_resource type="Animation" id="Animation_ewbju"]
 resource_name = "ClosedHand"
@@ -66,18 +60,6 @@ tracks/3/path = NodePath("HandPoint:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("HandPointArea2D:monitoring")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -147,18 +129,6 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("HandPointArea2D:monitoring")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_85qyi"]
 resource_name = "PointHand"
@@ -211,18 +181,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("HandPointArea2D:monitoring")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_nnt18"]
@@ -287,18 +245,6 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("HandPointArea2D:monitoring")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ewbju"]
 _data = {
@@ -315,7 +261,7 @@ size = Vector2(21.666687, 35.833344)
 radius = 38.559124
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rku1e"]
-size = Vector2(20, 39.3683)
+size = Vector2(20, 79.51212)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ryrav"]
 radius = 42.666687
@@ -333,76 +279,18 @@ size = Vector2(3105.25, 357)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vef74"]
 size = Vector2(3105.25, 314)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eow3j"]
+shader = ExtResource("2_v158k")
+shader_parameter/speed_x = 0.01
+shader_parameter/speed_y = 0.06
+shader_parameter/direction_x = 1.0
+shader_parameter/direction_y = -1.0
+
 [node name="Level" type="Node2D" unique_id=1013099189]
 script = ExtResource("1_o5yvi")
 
 [node name="Global" type="Node" parent="." unique_id=1673068272]
 script = ExtResource("1_1l0tm")
-
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1894128444]
-
-[node name="Background" type="TextureRect" parent="Parallax2D" unique_id=2021146985]
-texture_filter = 1
-texture_repeat = 2
-material = SubResource("ShaderMaterial_eow3j")
-offset_left = -399.0
-offset_top = -337.0
-offset_right = 240.36224
-offset_bottom = 134.82532
-scale = Vector2(1.8799982, 2.5200005)
-texture = ExtResource("3_h4fw4")
-
-[node name="Background2" type="TextureRect" parent="Parallax2D" unique_id=1546570073]
-texture_filter = 1
-texture_repeat = 2
-material = SubResource("ShaderMaterial_eow3j")
-offset_left = 771.00006
-offset_top = -337.0
-offset_right = 1410.3623
-offset_bottom = 134.82532
-scale = Vector2(1.8799982, 2.5200005)
-texture = ExtResource("3_h4fw4")
-
-[node name="Border" type="TextureRect" parent="Parallax2D" unique_id=1654994330]
-texture_filter = 1
-texture_repeat = 2
-offset_left = 1588.9999
-offset_top = -334.0
-offset_right = 2067.192
-offset_bottom = 137.82532
-scale = Vector2(1.8799982, 2.5200005)
-texture = ExtResource("5_rku1e")
-
-[node name="Border2" type="TextureRect" parent="Parallax2D" unique_id=942419711]
-texture_filter = 1
-texture_repeat = 2
-offset_left = -1330.0
-offset_top = -334.0
-offset_right = -851.808
-offset_bottom = 137.82532
-scale = Vector2(1.8799982, 2.5200005)
-texture = ExtResource("5_rku1e")
-metadata/_edit_use_anchors_ = true
-
-[node name="Border3" type="TextureRect" parent="Parallax2D" unique_id=314864877]
-texture_filter = 1
-texture_repeat = 2
-offset_left = -539.00006
-offset_top = 561.99994
-offset_right = 680.68195
-offset_bottom = 1701.2854
-scale = Vector2(1.8799982, 2.5200005)
-texture = ExtResource("5_rku1e")
-
-[node name="Border4" type="TextureRect" parent="Parallax2D" unique_id=2059470239]
-texture_filter = 1
-texture_repeat = 2
-offset_left = -571.00006
-offset_top = -3132.0
-offset_right = 648.68195
-offset_bottom = -1992.7146
-scale = Vector2(1.8799982, 2.5200005)
-texture = ExtResource("5_rku1e")
 
 [node name="MultiTargetCamera2D" type="Camera2D" parent="." unique_id=1690933642]
 position = Vector2(575, 518)
@@ -453,11 +341,18 @@ texture = ExtResource("10_nb51f")
 [node name="HandPointArea2D" type="Area2D" parent="Hand" unique_id=1721993536]
 collision_layer = 3
 collision_mask = 3
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/HandPointArea2D" unique_id=979158832]
-position = Vector2(0, -62.976746)
-scale = Vector2(12.45434, 2.3042169)
+position = Vector2(0, -109.22681)
+scale = Vector2(21.721004, 2.3042169)
 shape = SubResource("RectangleShape2D_rku1e")
+
+[node name="PointArea" type="Sprite2D" parent="Hand/HandPointArea2D" unique_id=1463918518]
+z_index = -1
+position = Vector2(0, -109.166664)
+scale = Vector2(6.7999997, 2.8666668)
+texture = ExtResource("10_1phco")
 
 [node name="Control" type="Control" parent="Hand" unique_id=1938640459]
 layout_mode = 3
@@ -562,6 +457,72 @@ position = Vector2(-3, 690)
 position = Vector2(579, -147.0625)
 shape = SubResource("RectangleShape2D_feb5d")
 disabled = true
+
+[node name="Parallax2D" type="Parallax2D" parent="Level" unique_id=1894128444]
+z_index = -2
+
+[node name="Background" type="TextureRect" parent="Level/Parallax2D" unique_id=2021146985]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_eow3j")
+offset_left = -399.0
+offset_top = -337.0
+offset_right = 240.36224
+offset_bottom = 134.82532
+scale = Vector2(1.8799982, 2.5200005)
+texture = ExtResource("3_h4fw4")
+
+[node name="Background2" type="TextureRect" parent="Level/Parallax2D" unique_id=1546570073]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_eow3j")
+offset_left = 771.00006
+offset_top = -337.0
+offset_right = 1410.3623
+offset_bottom = 134.82532
+scale = Vector2(1.8799982, 2.5200005)
+texture = ExtResource("3_h4fw4")
+
+[node name="Border" type="TextureRect" parent="Level/Parallax2D" unique_id=1654994330]
+texture_filter = 1
+texture_repeat = 2
+offset_left = 1588.9999
+offset_top = -334.0
+offset_right = 2067.192
+offset_bottom = 137.82532
+scale = Vector2(1.8799982, 2.5200005)
+texture = ExtResource("5_rku1e")
+
+[node name="Border2" type="TextureRect" parent="Level/Parallax2D" unique_id=942419711]
+texture_filter = 1
+texture_repeat = 2
+offset_left = -1330.0
+offset_top = -334.0
+offset_right = -851.808
+offset_bottom = 137.82532
+scale = Vector2(1.8799982, 2.5200005)
+texture = ExtResource("5_rku1e")
+metadata/_edit_use_anchors_ = true
+
+[node name="Border3" type="TextureRect" parent="Level/Parallax2D" unique_id=314864877]
+texture_filter = 1
+texture_repeat = 2
+offset_left = -539.00006
+offset_top = 561.99994
+offset_right = 680.68195
+offset_bottom = 1701.2854
+scale = Vector2(1.8799982, 2.5200005)
+texture = ExtResource("5_rku1e")
+
+[node name="Border4" type="TextureRect" parent="Level/Parallax2D" unique_id=2059470239]
+texture_filter = 1
+texture_repeat = 2
+offset_left = -571.00006
+offset_top = -3132.0
+offset_right = 648.68195
+offset_bottom = -1992.7146
+scale = Vector2(1.8799982, 2.5200005)
+texture = ExtResource("5_rku1e")
 
 [connection signal="body_entered" from="Hand/OpenHandKnockackArea" to="Hand" method="_on_open_hand_knockack_area_body_entered"]
 [connection signal="body_entered" from="Hand/HandPointArea2D" to="Hand" method="_on_hand_point_area_2d_body_entered"]

@@ -5,11 +5,16 @@ var playing_open_hand_anim = false
 
 @onready var animation_player = $AnimationPlayer
 
+@onready var point_sprite = $HandPoint
+@onready var point_area_image = $HandPointArea2D/PointArea
+@onready var point_area_2d = $HandPointArea2D
+
 @export var gravity = 20
 @export var jump_force = 400
 @export var walk_speed = 400
 
-@export var knockback_force: float = 800.0
+@export var knockback_force_swing: float = 800.0
+@export var knockback_force_pointer: float = 1100.0
 @export var knockback_duration: float  = 0.12
 
 func get_input():
@@ -29,9 +34,11 @@ func get_input():
 	if !is_on_floor():
 		velocity.y += gravity
 	
+	
 	if Input.is_action_pressed("action_2"):
 		playing_open_hand_anim = false
 		animation_player.play("PointHand")
+		point_area_image.visible = true
 	elif Input.is_action_pressed("action_1"):
 		if playing_open_hand_anim == false:
 			playing_open_hand_anim = true
@@ -39,6 +46,15 @@ func get_input():
 	else:
 		playing_open_hand_anim = false
 		animation_player.play("ClosedHand")
+	
+	if Input.is_action_just_released("action_2"):
+		point_area_image.visible = false
+		point_area_2d.monitoring = true
+		await get_tree().create_timer(3.5).timeout
+		point_area_2d.monitoring = false
+		point_sprite.position = Vector2(-1.005,-10.005)
+		
+
 func _physics_process(delta):
 	get_input()
 	move_and_slide()
@@ -65,13 +81,15 @@ func _on_area_2d_body_exited(body):
 func _on_open_hand_knockack_area_body_entered(body):
 	if body.is_in_group("item"):
 		var knockback_direction = (body.global_position - global_position).normalized()
-		body.apply_knockback(knockback_direction, knockback_force, knockback_duration)
+		body.apply_knockback(knockback_direction, knockback_force_swing, knockback_duration)
 
 
 func _on_hand_point_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("item"):
 		print("is in pointer area")
-		body.apply_knockback(Vector2.UP, knockback_force, knockback_duration)
+		body.apply_knockback(Vector2.UP, knockback_force_pointer, knockback_duration)
+		point_sprite.global_position = body.global_position
+		await get_tree().create_timer(2).timeout
 
 func rotate_hand_right():
 	rotation = deg_to_rad(14.0)

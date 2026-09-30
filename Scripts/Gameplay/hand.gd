@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var in_hand
 var playing_open_hand_anim = false
+var item_in_area_2d = null
 
 @onready var animation_player = $AnimationPlayer
 
@@ -38,6 +39,7 @@ func get_input():
 	if Input.is_action_pressed("action_2"):
 		playing_open_hand_anim = false
 		animation_player.play("PointHand")
+		point_sprite.position = Vector2(-1.005,-10.005)
 		point_area_image.visible = true
 	elif Input.is_action_pressed("action_1"):
 		if playing_open_hand_anim == false:
@@ -48,11 +50,15 @@ func get_input():
 		animation_player.play("ClosedHand")
 	
 	if Input.is_action_just_released("action_2"):
-		point_area_image.visible = false
-		point_area_2d.monitoring = true
-		await get_tree().create_timer(3.5).timeout
-		point_area_2d.monitoring = false
-		point_sprite.position = Vector2(-1.005,-10.005)
+		if item_in_area_2d != null:
+			print("REALEASED the item is: ",item_in_area_2d)
+			point_area_image.visible = false
+			#point_area_2d.monitoring = true
+			item_in_area_2d.apply_knockback(Vector2.UP, knockback_force_pointer, knockback_duration)
+			point_sprite.global_position = item_in_area_2d.global_position
+			#await get_tree().create_timer(2).timeout
+			#point_area_2d.monitoring = false
+			#point_sprite.position = Vector2(-1.005,-10.005)
 		
 
 func _physics_process(delta):
@@ -83,13 +89,16 @@ func _on_open_hand_knockack_area_body_entered(body):
 		var knockback_direction = (body.global_position - global_position).normalized()
 		body.apply_knockback(knockback_direction, knockback_force_swing, knockback_duration)
 
-
 func _on_hand_point_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("item"):
 		print("is in pointer area")
-		body.apply_knockback(Vector2.UP, knockback_force_pointer, knockback_duration)
-		point_sprite.global_position = body.global_position
-		await get_tree().create_timer(2).timeout
+		item_in_area_2d = body
+		print("the 2d_item_in_area: ",item_in_area_2d)
+
+func _on_hand_point_area_2d_body_exited(body):
+	item_in_area_2d = null
+	print("item left the area")
+	print("the 2d_item_in_area: ",item_in_area_2d)
 
 func rotate_hand_right():
 	rotation = deg_to_rad(14.0)

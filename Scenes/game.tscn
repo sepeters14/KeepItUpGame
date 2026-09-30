@@ -60,7 +60,7 @@ tracks/3/path = NodePath("HandPoint:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.23333333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -124,7 +124,7 @@ tracks/4/path = NodePath("HandPoint:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.23333333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -341,7 +341,6 @@ texture = ExtResource("10_nb51f")
 [node name="HandPointArea2D" type="Area2D" parent="Hand" unique_id=1721993536]
 collision_layer = 3
 collision_mask = 3
-monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/HandPointArea2D" unique_id=979158832]
 position = Vector2(0, -109.22681)
@@ -349,6 +348,7 @@ scale = Vector2(21.721004, 2.3042169)
 shape = SubResource("RectangleShape2D_rku1e")
 
 [node name="PointArea" type="Sprite2D" parent="Hand/HandPointArea2D" unique_id=1463918518]
+visible = false
 z_index = -1
 position = Vector2(0, -109.166664)
 scale = Vector2(6.7999997, 2.8666668)
@@ -526,5 +526,6 @@ texture = ExtResource("5_rku1e")
 
 [connection signal="body_entered" from="Hand/OpenHandKnockackArea" to="Hand" method="_on_open_hand_knockack_area_body_entered"]
 [connection signal="body_entered" from="Hand/HandPointArea2D" to="Hand" method="_on_hand_point_area_2d_body_entered"]
+[connection signal="body_exited" from="Hand/HandPointArea2D" to="Hand" method="_on_hand_point_area_2d_body_exited"]
 [connection signal="body_entered" from="Hand/LeaveForPointsArea" to="Hand" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Hand/LeaveForPointsArea" to="Hand" method="_on_area_2d_body_exited"]

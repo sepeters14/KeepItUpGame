@@ -3,6 +3,7 @@ extends CharacterBody2D
 var in_hand
 var playing_open_hand_anim = false
 var item_in_area_2d = null
+var can_jump = true
 
 @onready var animation_player = $AnimationPlayer
 
@@ -36,6 +37,7 @@ func get_input():
 		velocity.y = gravity * 2
 	if !is_on_floor():
 		velocity.y += gravity
+
 	
 	
 	if Input.is_action_pressed("action_2"):
@@ -70,6 +72,17 @@ func get_input():
 
 func _physics_process(delta):
 	get_input()
+	
+	if is_on_floor():
+		can_jump = true
+		print("on floor")
+	if is_on_wall_only():
+		can_jump = true
+		velocity.y -= jump_force
+		print("on wall")
+	if !is_on_floor() and !is_on_wall():
+		can_jump = false
+	
 	move_and_slide()
 
 #func _input(event):

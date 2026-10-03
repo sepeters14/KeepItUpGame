@@ -421,24 +421,20 @@ collision_mask = 3
 position = Vector2(0, 216)
 shape = SubResource("RectangleShape2D_feb5d")
 
-[node name="Wall" type="StaticBody2D" parent="Level" unique_id=1310451127]
-position = Vector2(72, 69)
-rotation = 1.5707964
-collision_layer = 3
-collision_mask = 3
+[node name="Wall" type="StaticBody2D" parent="Level" unique_id=2104578959]
+position = Vector2(2, 69)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Wall" unique_id=1660018745]
-position = Vector2(-750, 253.00003)
+position = Vector2(-181, -681)
+rotation = 1.5707964
 shape = SubResource("RectangleShape2D_j5wjh")
 
-[node name="Wall2" type="StaticBody2D" parent="Level" unique_id=1590195856]
-position = Vector2(1163, 73)
-rotation = 1.5707964
-collision_layer = 3
-collision_mask = 3
+[node name="Wall2" type="StaticBody2D" parent="Level" unique_id=106328556]
+position = Vector2(1161, 146)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Wall2" unique_id=1871347946]
-position = Vector2(-774, -148)
+position = Vector2(148, -770)
+rotation = 1.5707964
 shape = SubResource("RectangleShape2D_vef74")
 
 [node name="Ceiling" type="StaticBody2D" parent="Level" unique_id=1434829394]

@@ -4,18 +4,23 @@ var in_hand
 var playing_open_hand_anim = false
 var item_in_area_2d = null
 var can_jump = true
+var number_of_jumps = 0
+var just_wall_jumped = false
+var is_falling = false
 
 @onready var animation_player = $AnimationPlayer
 
 @onready var point_sprite = $HandPoint
 @onready var point_area_image = $HandPointArea2D/PointArea
 @onready var point_area_2d = $HandPointArea2D
+@onready var left_check: RayCast2D = $LeftRayCast2D
+@onready var right_check: RayCast2D = $RightRayCast2D
 
 @onready var leave_for_points_area_2d = $LeaveForPointsArea
 
 @export var gravity = 20
-@export var jump_force = 400
-@export var walk_speed = 400
+@onready var jump_force = Global.normal_jump_force
+@onready var move_speed = Global.move_speed
 
 @export var knockback_force_swing: float = 800.0
 @export var knockback_force_pointer: float = 1100.0
@@ -25,19 +30,26 @@ func get_input():
 	#var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var input_direction
 	if(Input.is_action_pressed("move_left")):
-		velocity.x = -walk_speed
+		velocity.x = -move_speed
 	elif(Input.is_action_pressed("move_right")):
-		velocity.x = walk_speed
+		velocity.x = move_speed
 	else:
 		velocity.x = 0
 	
 	if(Input.is_action_just_pressed("jump") and is_on_floor()):
 		velocity.y -= jump_force
-	if(!is_on_floor() and Input.is_action_just_released("jump")):
+		number_of_jumps += 1
+	if Input.is_action_just_pressed("jump") and is_on_wall() and number_of_jumps <= Global.max_jumps and just_wall_jumped == false:
+		if left_check.is_colliding():
+			velocity.x += jump_force
+		if right_check.is_colliding():
+			velocity.x -= jump_force
+		just_wall_jumped = true
+		velocity.y -= jump_force
+		number_of_jumps += 1
+	if!is_on_floor() and Input.is_action_just_released("jump") and !is_falling and !just_wall_jumped:
 		velocity.y = gravity * 2
-	if !is_on_floor():
-		velocity.y += gravity
-
+	
 	
 	
 	if Input.is_action_pressed("action_2"):
@@ -71,18 +83,31 @@ func get_input():
 		
 
 func _physics_process(delta):
-	get_input()
-	
 	if is_on_floor():
 		can_jump = true
-		print("on floor")
-	if is_on_wall_only():
+		number_of_jumps = 0
+		#print("on floor")
+	if is_on_floor_only():
+		jump_force = Global.normal_jump_force
+		just_wall_jumped = false
+	if is_on_wall_only() and just_wall_jumped == false:
+		velocity.y = gravity * 0.5
+	if is_on_wall_only() and number_of_jumps <= Global.max_jumps:
 		can_jump = true
-		velocity.y -= jump_force
-		print("on wall")
+		jump_force = Global.wall_jump_jump_force
+		#velocity.y -= jump_force
+		#print("on wall ", number_of_jumps)
 	if !is_on_floor() and !is_on_wall():
 		can_jump = false
+	if !is_on_floor():
+		velocity.y += gravity
 	
+	if velocity.y > 0:
+		is_falling = true
+	else:
+		is_falling = false
+		
+	get_input()
 	move_and_slide()
 
 #func _input(event):

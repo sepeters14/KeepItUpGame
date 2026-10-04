@@ -296,7 +296,7 @@ script = ExtResource("1_1l0tm")
 position = Vector2(575, 518)
 
 [node name="Hand" type="CharacterBody2D" parent="." unique_id=1999486028]
-position = Vector2(556, 775)
+position = Vector2(578, 784.00006)
 scale = Vector2(1.2, 1.2)
 collision_layer = 3
 script = ExtResource("5_o5yvi")
@@ -380,6 +380,14 @@ collision_mask = 3
 position = Vector2(-0.8333232, -45.833332)
 shape = SubResource("CapsuleShape2D_ryrav")
 one_way_collision_margin = 0.0
+
+[node name="RightRayCast2D" type="RayCast2D" parent="Hand" unique_id=794549724]
+position = Vector2(0, -5.086263e-05)
+rotation = -1.5707964
+
+[node name="LeftRayCast2D" type="RayCast2D" parent="Hand" unique_id=1602307610]
+position = Vector2(0, -5.086263e-05)
+rotation = 1.5707964
 
 [node name="Level" type="Node2D" parent="." unique_id=969735533]
 

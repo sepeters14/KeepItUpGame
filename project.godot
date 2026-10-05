@@ -15,13 +15,29 @@ run/main_scene="uid://cusaopp38lepo"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Images/icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://b8pch8a2lcawn"
+
 [autoload]
 
 Global="*uid://cwy745ng4o7t"
+AudioManager="*uid://ptbldinwp82o"
 
 [dotnet]
 
 project/assembly_name="KeepUp"
+
+[file_customization]
+
+folder_colors={
+"res://Images/": "yellow",
+"res://Scenes/": "purple",
+"res://Scenes/Audio/": "orange",
+"res://Scenes/Items/": "green",
+"res://Scripts/": "pink",
+"res://Sounds/": "orange"
+}
 
 [input]
 

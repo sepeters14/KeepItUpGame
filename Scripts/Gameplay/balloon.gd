@@ -20,6 +20,7 @@ func _physics_process(delta):
 		knockback_timer -= delta
 		#if knockback_timer <= 0.0:
 			#knockback = Vector2.ZERO
+	
 
 func destroy_item():
 	sprite.visible = false
@@ -27,6 +28,7 @@ func destroy_item():
 	sprite_animated.visible = true
 	sprite_animated.play("pop")
 	await sprite_animated.animation_finished
+	AudioManager.play("res://Sounds/Balloon/215851__vkproduktion__bursting-balloon.mp3")
 	queue_free()
 
 func apply_knockback(direction: Vector2, force: float, knockback_duration: float) -> void:

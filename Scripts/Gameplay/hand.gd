@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var in_hand
 var playing_open_hand_anim = false
-var item_in_area_2d = null
+var object_in_area_2d = null
 var can_jump = true
 var number_of_jumps = 0
 var just_wall_jumped = false
@@ -68,18 +68,20 @@ func get_input():
 	
 	if Input.is_action_just_released("action_2"):
 		point_area_image.visible = false
-		if item_in_area_2d != null:
+		if object_in_area_2d != null:
+			AudioManager.play("res://Sounds/Balloon/794322__sadiquecat__helium-balloon-hit-kick-like.wav")
 			#point_area_2d.monitoring = true
-			item_in_area_2d.apply_knockback(Vector2.UP, knockback_force_pointer, knockback_duration)
-			#point_sprite.global_position = item_in_area_2d.global_position
+			object_in_area_2d.apply_knockback(Vector2.UP, knockback_force_pointer, knockback_duration)
+			#point_sprite.global_position = object_in_area_2d.global_position
 			var pointer_hand_tween = create_tween()
 			pointer_hand_tween.set_trans(Tween.TRANS_SINE)
 			pointer_hand_tween.set_ease(Tween.EASE_OUT)
-			pointer_hand_tween.tween_property(self, "global_position", item_in_area_2d.global_position, 0.1)
+			pointer_hand_tween.tween_property(self, "global_position", object_in_area_2d.global_position, 0.1)
 			await pointer_hand_tween.finished
 			Global.score = Global.score + 1
 			await get_tree().create_timer(2).timeout
 			leave_for_points_area_2d.monitoring = true
+			
 		
 
 func _physics_process(delta):
@@ -120,26 +122,27 @@ func _physics_process(delta):
 		#rotate_hand_left()
 
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("item"):
+	if body.is_in_group("object"):
 		in_hand = true
 
 func _on_area_2d_body_exited(body):
-	if body.is_in_group("item"):
+	if body.is_in_group("object"):
 		if in_hand == true:
 			in_hand = false
 			Global.score = Global.score + 1
 
 func _on_open_hand_knockack_area_body_entered(body):
-	if body.is_in_group("item"):
+	if body.is_in_group("object"):
 		var knockback_direction = (body.global_position - global_position).normalized()
 		body.apply_knockback(knockback_direction, knockback_force_swing, knockback_duration)
+		AudioManager.play("res://Sounds/Balloon/794322__sadiquecat__helium-balloon-hit-kick-like.wav")
 
 func _on_hand_point_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("item"):
-		item_in_area_2d = body
+	if body.is_in_group("object"):
+		object_in_area_2d = body
 
 func _on_hand_point_area_2d_body_exited(body):
-	item_in_area_2d = null
+	object_in_area_2d = null
 
 func rotate_hand_right():
 	rotation = deg_to_rad(14.0)

@@ -55,11 +55,12 @@ func get_input():
 	
 	
 	if Input.is_action_pressed("action_2"):
+		point_area_2d.monitoring = true
 		playing_open_hand_anim = false
 		animation_player.play("PointHand")
 		point_sprite.position = Vector2(-1.005,-10.005)
 		point_area_image.visible = true
-		leave_for_points_area_2d.monitoring = false
+		#leave_for_points_area_2d.monitoring = false
 	elif Input.is_action_pressed("action_1"):
 		if playing_open_hand_anim == false:
 			playing_open_hand_anim = true
@@ -71,6 +72,7 @@ func get_input():
 	
 	if Input.is_action_just_released("action_2"):
 		point_area_image.visible = false
+		
 		if object_in_area_2d != null:
 			get_parent().screen_shake(10, 0.05)
 			AudioManager.play("res://Sounds/Balloon/794322__sadiquecat__helium-balloon-hit-kick-like.wav")
@@ -82,11 +84,13 @@ func get_input():
 			pointer_hand_tween.set_ease(Tween.EASE_OUT)
 			pointer_hand_tween.tween_property(self, "global_position", object_in_area_2d.global_position, 0.1)
 			await pointer_hand_tween.finished
+			point_area_2d.monitoring = false
 			Global.score = Global.score + 1
 			AudioManager.play("res://Sounds/Score/ScoreUpV1.mp3")
 			await get_tree().create_timer(2).timeout
-			leave_for_points_area_2d.monitoring = true
-			
+			#leave_for_points_area_2d.monitoring = true
+		else:
+			point_area_2d.monitoring = false
 		
 
 func _physics_process(delta):
@@ -116,6 +120,7 @@ func _physics_process(delta):
 		
 	get_input()
 	move_and_slide()
+	print(point_area_2d.monitoring)
 
 #func _input(event):
 	#if event.get_relative().x > 0:
@@ -134,7 +139,7 @@ func _on_area_2d_body_exited(body):
 	if body.is_in_group("object"):
 		if in_hand == true:
 			in_hand = false
-			Global.score = Global.score + 1
+			
 
 func _on_open_hand_knockack_area_body_entered(body):
 	if body.is_in_group("object"):
@@ -143,10 +148,12 @@ func _on_open_hand_knockack_area_body_entered(body):
 		AudioManager.play("res://Sounds/Score/ScoreUpV1.mp3")
 		AudioManager.play("res://Sounds/Balloon/794322__sadiquecat__helium-balloon-hit-kick-like.wav")
 		get_parent().screen_shake(2, 0.05)
+		Global.score = Global.score + 1
 
 func _on_hand_point_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("object"):
 		object_in_area_2d = body
+		print("Object should hit")
 
 func _on_hand_point_area_2d_body_exited(body):
 	object_in_area_2d = null

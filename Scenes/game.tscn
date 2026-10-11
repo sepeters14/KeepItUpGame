@@ -491,45 +491,21 @@ offset_bottom = 134.82532
 scale = Vector2(1.8799982, 2.5200005)
 texture = ExtResource("3_h4fw4")
 
-[node name="Border" type="TextureRect" parent="Level/Parallax2D" unique_id=1654994330]
-texture_filter = 1
-texture_repeat = 2
-offset_left = 1588.9999
-offset_top = -334.0
-offset_right = 2067.192
-offset_bottom = 137.82532
-scale = Vector2(1.8799982, 2.5200005)
+[node name="Floor" type="Sprite2D" parent="Level/Parallax2D" unique_id=911839928]
+position = Vector2(600.00006, 905)
+scale = Vector2(71.40625, 4.71875)
 texture = ExtResource("5_rku1e")
 
-[node name="Border2" type="TextureRect" parent="Level/Parallax2D" unique_id=942419711]
-texture_filter = 1
-texture_repeat = 2
-offset_left = -1330.0
-offset_top = -334.0
-offset_right = -851.808
-offset_bottom = 137.82532
-scale = Vector2(1.8799982, 2.5200005)
-texture = ExtResource("5_rku1e")
-metadata/_edit_use_anchors_ = true
-
-[node name="Border3" type="TextureRect" parent="Level/Parallax2D" unique_id=314864877]
-texture_filter = 1
-texture_repeat = 2
-offset_left = -539.00006
-offset_top = 561.99994
-offset_right = 680.68195
-offset_bottom = 1701.2854
-scale = Vector2(1.8799982, 2.5200005)
+[node name="Wall" type="Sprite2D" parent="Level/Parallax2D" unique_id=962519236]
+position = Vector2(-77, 472.00003)
+rotation = 1.5707964
+scale = Vector2(71.40625, 4.71875)
 texture = ExtResource("5_rku1e")
 
-[node name="Border4" type="TextureRect" parent="Level/Parallax2D" unique_id=2059470239]
-texture_filter = 1
-texture_repeat = 2
-offset_left = -571.00006
-offset_top = -3132.0
-offset_right = 648.68195
-offset_bottom = -1992.7146
-scale = Vector2(1.8799982, 2.5200005)
+[node name="Wall2" type="Sprite2D" parent="Level/Parallax2D" unique_id=1687839665]
+position = Vector2(1227, 484)
+rotation = 1.5707964
+scale = Vector2(71.40625, 4.71875)
 texture = ExtResource("5_rku1e")
 
 [connection signal="body_entered" from="Hand/OpenHandKnockackArea" to="Hand" method="_on_open_hand_knockack_area_body_entered"]

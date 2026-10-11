@@ -83,6 +83,7 @@ func get_input():
 			pointer_hand_tween.tween_property(self, "global_position", object_in_area_2d.global_position, 0.1)
 			await pointer_hand_tween.finished
 			Global.score = Global.score + 1
+			AudioManager.play("res://Sounds/Score/ScoreUpV1.mp3")
 			await get_tree().create_timer(2).timeout
 			leave_for_points_area_2d.monitoring = true
 			
@@ -139,6 +140,7 @@ func _on_open_hand_knockack_area_body_entered(body):
 	if body.is_in_group("object"):
 		var knockback_direction = (body.global_position - global_position).normalized()
 		body.apply_knockback(knockback_direction, knockback_force_swing, knockback_duration)
+		AudioManager.play("res://Sounds/Score/ScoreUpV1.mp3")
 		AudioManager.play("res://Sounds/Balloon/794322__sadiquecat__helium-balloon-hit-kick-like.wav")
 		get_parent().screen_shake(2, 0.05)
 

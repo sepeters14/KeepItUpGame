@@ -397,19 +397,19 @@ script = ExtResource("14_1phco")
 object_to_spawn = ExtResource("11_rku1e")
 
 [node name="Point1" type="Marker2D" parent="Level/ObjectSpawner" unique_id=862662685]
-position = Vector2(200, -343)
+position = Vector2(200, -150)
 
 [node name="Point2" type="Marker2D" parent="Level/ObjectSpawner" unique_id=1333609753]
-position = Vector2(400, -345)
+position = Vector2(400, -152)
 
 [node name="Point3" type="Marker2D" parent="Level/ObjectSpawner" unique_id=1207430972]
-position = Vector2(600, -345)
+position = Vector2(600, -152)
 
 [node name="Point4" type="Marker2D" parent="Level/ObjectSpawner" unique_id=2032559435]
-position = Vector2(800, -349)
+position = Vector2(800, -156)
 
 [node name="Point5" type="Marker2D" parent="Level/ObjectSpawner" unique_id=368409354]
-position = Vector2(1000, -351)
+position = Vector2(1000, -158)
 
 [node name="Area2DForKillingObjects" type="Area2D" parent="Level/ObjectSpawner" unique_id=1604422929 groups=["killpane"]]
 position = Vector2(601, 925)

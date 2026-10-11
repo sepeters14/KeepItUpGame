@@ -2,6 +2,7 @@ extends RigidBody2D
 
 @onready var sprite = $Sprite2D
 @onready var sprite_animated = $AnimatedSprite2D
+@onready var hit_particles = $HitParticles
 
 var level_killpane : Area2D
 
@@ -37,10 +38,12 @@ func apply_knockback(direction: Vector2, force: float, knockback_duration: float
 	apply_impulse(knockback, Vector2(-0.1,0)) # this makes the balloon spin while applying the force TODO (make the VECTOR2 a random postion or based on something)
 	knockback_timer = knockback_duration
 	
+	hit_particles.emitting = true
 	var tween = create_tween()
 	#tween.set_parallel(true)
 	tween.tween_property($Sprite2D, "scale", Vector2(1.2,1.8), 0.2)
 	tween.tween_property($Sprite2D, "scale", Vector2(2,2), 0.2)
+	hit_particles.emitting = false
 	
 
 

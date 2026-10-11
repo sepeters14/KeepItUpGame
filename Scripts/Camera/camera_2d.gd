@@ -1,53 +1,32 @@
 extends Camera2D
 
-@export var balloon: RigidBody2D
+var shake_intesity: float = 0.0
+var active_shake_time: float = 0.0
 
-#func _physics_process(delta):
-	#if balloon.position.y < 18:
-		#zoom = lerp(zoom, Vector2(0.5,0.5), 0.08)
-	#elif balloon.position.y >= 10:
-		#zoom = lerp(zoom, Vector2(1,1), 0.08)
+var shake_decay: float = 5.0
 
+var shake_time: float = 0.0
+var shake_time_speed: float = 20.0
 
-@export var move_speed = 0.5  # camera position lerp speed
-@export var zoom_speed = 0.25  # camera zoom lerp speed
-@export var min_zoom = 1.5  # camera won't zoom closer than this
-@export var max_zoom = 5  # camera won't zoom farther than this
-@export var margin = Vector2(400, 200)  # include some buffer area around targets
+var noise = FastNoiseLite.new()
 
-var targets = []  # Array of targets to be tracked.
-
-var knockback: Vector2 =  Vector2.ZERO
-var knockback_timer: float = 0.0
-
-@onready var screen_size = get_viewport_rect().size
-
-func _process(delta):
-	if !targets:
-		return
-	# Keep the camera centered between the targets
-	var target_position = Vector2.ZERO
-	for target in targets:
-		target_position += target.global_position
-	target_position /= targets.size()
-	global_position = lerp(global_position, target_position, move_speed)
-	# Find the zoom that will contain all targets
-	var rect = Rect2(global_position, Vector2.ONE)
-	for target in targets:
-		rect = rect.expand(target.global_position)
-	rect = rect.grow_individual(margin.x, margin.y, margin.x, margin.y)
-	var d = max(rect.size.x, rect.size.y)
-	var zoom_value
-	if rect.size.x > rect.size.y * screen_size.aspect():
-		zoom_value = clamp(rect.size.x / screen_size.x, min_zoom, max_zoom)
+func _physics_process(delta: float) -> void:
+	if active_shake_time > 0:
+		shake_time += delta * shake_time_speed
+		active_shake_time -= delta
+		offset = Vector2(
+			noise.get_noise_2d(shake_time, 0) * shake_intesity,
+			noise.get_noise_2d(0, shake_time) * shake_intesity
+		)
+		shake_intesity = max(shake_intesity - shake_decay * delta, 0)
 	else:
-		zoom_value = clamp(rect.size.y / screen_size.y, min_zoom, max_zoom)
-	zoom = lerp(zoom, Vector2.ONE / zoom_value, zoom_speed)
+		offset = lerp(offset, Vector2.ZERO, 10.5 * delta)
 
-func add_target(target):
-	if not target in targets:
-		targets.append(target)
-
-func remove_target(target):
-	if target in targets:
-		targets.erase(target)
+func screen_shake(intensity: int, time: float):
+	randomize()
+	noise.seed = randi()
+	noise.frequency = 2.0
+	
+	shake_intesity = intensity
+	active_shake_time = time
+	shake_time = 0.0

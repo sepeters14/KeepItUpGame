@@ -36,6 +36,12 @@ func apply_knockback(direction: Vector2, force: float, knockback_duration: float
 	#apply_central_impulse(knockback) #this makes the balloon not spin
 	apply_impulse(knockback, Vector2(-0.1,0)) # this makes the balloon spin while applying the force TODO (make the VECTOR2 a random postion or based on something)
 	knockback_timer = knockback_duration
+	
+	var tween = create_tween()
+	#tween.set_parallel(true)
+	tween.tween_property($Sprite2D, "scale", Vector2(1.2,1.8), 0.2)
+	tween.tween_property($Sprite2D, "scale", Vector2(2,2), 0.2)
+	
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -43,3 +49,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if area.is_in_group("killpane"):
 			is_being_freed = true
 			destroy_item()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("safe_geo"):
+		AudioManager.play("res://Sounds/Balloon/794322__sadiquecat__helium-balloon-hit-kick-like.wav")

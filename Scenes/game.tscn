@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cusaopp38lepo"]
 
 [ext_resource type="Script" uid="uid://b5ufeoqgycoet" path="res://Scripts/Global/game.gd" id="1_o5yvi"]
+[ext_resource type="Script" uid="uid://dfymxolpaj3qf" path="res://Scripts/Camera/camera_2d.gd" id="2_rfjv2"]
 [ext_resource type="Shader" uid="uid://db1lkbochiplo" path="res://Scripts/Shaders/scollingbackground.gdshader" id="2_v158k"]
 [ext_resource type="Texture2D" uid="uid://cc4yylh2wmwtg" path="res://Images/Backgrounds/BrickWallBackground.png" id="3_h4fw4"]
 [ext_resource type="Script" uid="uid://csu0r32qayl03" path="res://Scripts/UI/rich_text_label.gd" id="4_ldgsr"]
@@ -288,8 +289,9 @@ shader_parameter/direction_y = -1.0
 [node name="Level" type="Node2D" unique_id=1013099189]
 script = ExtResource("1_o5yvi")
 
-[node name="MultiTargetCamera2D" type="Camera2D" parent="." unique_id=1690933642]
+[node name="Camera" type="Camera2D" parent="." unique_id=1690933642]
 position = Vector2(575, 518)
+script = ExtResource("2_rfjv2")
 
 [node name="Hand" type="CharacterBody2D" parent="." unique_id=1999486028 groups=["item"]]
 position = Vector2(578, 784.00006)
@@ -427,23 +429,27 @@ collision_mask = 3
 position = Vector2(0, 216)
 shape = SubResource("RectangleShape2D_feb5d")
 
-[node name="Wall" type="StaticBody2D" parent="Level" unique_id=2104578959]
+[node name="Wall" type="StaticBody2D" parent="Level" unique_id=2104578959 groups=["safe_geo"]]
 position = Vector2(2, 69)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Wall" unique_id=1660018745]
 position = Vector2(-181, -681)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_j5wjh")
 
-[node name="Wall2" type="StaticBody2D" parent="Level" unique_id=106328556]
+[node name="Wall2" type="StaticBody2D" parent="Level" unique_id=106328556 groups=["safe_geo"]]
 position = Vector2(1161, 146)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Wall2" unique_id=1871347946]
 position = Vector2(148, -770)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_vef74")
 
-[node name="Ceiling" type="StaticBody2D" parent="Level" unique_id=1434829394]
+[node name="Ceiling" type="StaticBody2D" parent="Level" unique_id=1434829394 groups=["safe_geo"]]
 position = Vector2(576, -2444)
 collision_layer = 3
 collision_mask = 3

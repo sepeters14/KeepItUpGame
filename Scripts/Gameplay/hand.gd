@@ -10,6 +10,8 @@ var is_falling = false
 
 @onready var animation_player = $AnimationPlayer
 
+@onready var open_hand_knockback_area = $OpenHandKnockackArea
+
 @onready var point_sprite = $HandPoint
 @onready var point_area_image = $HandPointArea2D/PointArea
 @onready var point_area_2d = $HandPointArea2D
@@ -62,6 +64,7 @@ func get_input():
 		if playing_open_hand_anim == false:
 			playing_open_hand_anim = true
 			animation_player.play("OpenHandSwing")
+				
 	else:
 		playing_open_hand_anim = false
 		animation_player.play("ClosedHand")
@@ -69,6 +72,7 @@ func get_input():
 	if Input.is_action_just_released("action_2"):
 		point_area_image.visible = false
 		if object_in_area_2d != null:
+			get_parent().screen_shake(10, 0.05)
 			AudioManager.play("res://Sounds/Balloon/794322__sadiquecat__helium-balloon-hit-kick-like.wav")
 			#point_area_2d.monitoring = true
 			object_in_area_2d.apply_knockback(Vector2.UP, knockback_force_pointer, knockback_duration)
@@ -136,6 +140,7 @@ func _on_open_hand_knockack_area_body_entered(body):
 		var knockback_direction = (body.global_position - global_position).normalized()
 		body.apply_knockback(knockback_direction, knockback_force_swing, knockback_duration)
 		AudioManager.play("res://Sounds/Balloon/794322__sadiquecat__helium-balloon-hit-kick-like.wav")
+		get_parent().screen_shake(2, 0.05)
 
 func _on_hand_point_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("object"):

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0l5q1uonbusw"
-path="res://.godot/imported/EnemyAppearSmoke.png-317506a096eaad5a1cc5a2c18fc5ed5d.ctex"
+uid="uid://cqkfnb4un7gn2"
+path="res://.godot/imported/Hand4_closed.png-543352c1377da00e1bf0a35b73f8c56c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Items/Balloon/EnemyAppearSmoke.png"
-dest_files=["res://.godot/imported/EnemyAppearSmoke.png-317506a096eaad5a1cc5a2c18fc5ed5d.ctex"]
+source_file="res://Images/Items/Hands/Hand4_closed.png"
+dest_files=["res://.godot/imported/Hand4_closed.png-543352c1377da00e1bf0a35b73f8c56c.ctex"]
 
 [params]
 

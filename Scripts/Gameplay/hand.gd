@@ -49,7 +49,7 @@ func get_input():
 		just_wall_jumped = true
 		velocity.y -= jump_force
 		number_of_jumps += 1
-	if!is_on_floor() and Input.is_action_just_released("jump") and !is_falling and !just_wall_jumped:
+	if !is_on_floor() and Input.is_action_just_released("jump") and !is_falling and !just_wall_jumped:
 		velocity.y = gravity * 2
 	
 	

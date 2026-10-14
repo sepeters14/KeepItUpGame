@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dju1qfb8kp1f8"
-path="res://.godot/imported/Balloon.png-7d5b05f2e7c6a9761d9e2a836843d7d0.ctex"
+uid="uid://cbscajr4be1sr"
+path="res://.godot/imported/Hand2.png-380b12c93ceea09df14a6d5b89114ef4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Items/Balloon/Balloon.png"
-dest_files=["res://.godot/imported/Balloon.png-7d5b05f2e7c6a9761d9e2a836843d7d0.ctex"]
+source_file="res://Images/Items/Hands/Hand2.png"
+dest_files=["res://.godot/imported/Hand2.png-380b12c93ceea09df14a6d5b89114ef4.ctex"]
 
 [params]
 

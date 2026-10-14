@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://qbq3bbjiqlge"]
 
 [ext_resource type="Script" uid="uid://dpngtpefaqq62" path="res://Scripts/Gameplay/balloon.gd" id="1_5nddh"]
-[ext_resource type="Texture2D" uid="uid://mqdyu2di6gx0" path="res://Images/Items/Balloon/Balloon2.png" id="2_wwsai"]
-[ext_resource type="Texture2D" uid="uid://bggbsbcc051k1" path="res://Images/Items/Balloon/Balloon2_5.png" id="3_oyf83"]
+[ext_resource type="Texture2D" uid="uid://bggbsbcc051k1" path="res://Images/Objects/Balloon/Balloon2_5.png" id="3_oyf83"]
+[ext_resource type="Texture2D" uid="uid://cpf7q0awn7860" path="res://Images/Objects/Balloon/Balloon3.png" id="4_7pw4o"]
+[ext_resource type="Texture2D" uid="uid://cco4j5oogqj3x" path="res://Images/Objects/Balloon/Balloon3_5.png" id="4_77t7o"]
 [ext_resource type="Texture2D" uid="uid://c14ssdns4wcuh" path="res://Images/Particles/aPixel.png" id="4_yix15"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ryrav"]
@@ -27,6 +28,22 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("3_oyf83")
 region = Rect2(96, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_77t7o"]
+atlas = ExtResource("4_77t7o")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvlia"]
+atlas = ExtResource("4_77t7o")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxl7l"]
+atlas = ExtResource("4_77t7o")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v70cm"]
+atlas = ExtResource("4_77t7o")
+region = Rect2(96, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_h4fw4"]
 animations = [{
 "frames": [{
@@ -44,6 +61,23 @@ animations = [{
 }],
 "loop": false,
 "name": &"pop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77t7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvlia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxl7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v70cm")
+}],
+"loop": true,
+"name": &"pop2",
 "speed": 5.0
 }]
 
@@ -65,7 +99,7 @@ script = ExtResource("1_5nddh")
 visible = false
 texture_filter = 1
 scale = Vector2(2, 2)
-texture = ExtResource("2_wwsai")
+texture = ExtResource("4_7pw4o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=195432935]
 visible = false
@@ -75,7 +109,7 @@ shape = SubResource("CircleShape2D_fc0e3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=754422848]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_h4fw4")
-animation = &"pop"
+animation = &"pop2"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1292285903]
 visible = false

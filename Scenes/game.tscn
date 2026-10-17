@@ -3,12 +3,15 @@
 [ext_resource type="Script" uid="uid://b5ufeoqgycoet" path="res://Scripts/Global/game.gd" id="1_o5yvi"]
 [ext_resource type="Script" uid="uid://dfymxolpaj3qf" path="res://Scripts/Camera/camera_2d.gd" id="2_rfjv2"]
 [ext_resource type="Script" uid="uid://csu0r32qayl03" path="res://Scripts/UI/rich_text_label.gd" id="4_ldgsr"]
+[ext_resource type="Texture2D" uid="uid://bmewp8lykq6xg" path="res://Images/Items/Hands/Hand3_75_closed.png" id="4_rku1e"]
+[ext_resource type="Texture2D" uid="uid://d3ydsws50gylw" path="res://Images/Items/Hands/Hand3_75_run_1.png" id="5_nb51f"]
 [ext_resource type="Script" uid="uid://0ojlp0d87l17" path="res://Scripts/Gameplay/hand.gd" id="5_o5yvi"]
-[ext_resource type="Texture2D" uid="uid://cn7htql76he21" path="res://Images/Items/Hands/Hand4.png" id="5_rfjv2"]
+[ext_resource type="Texture2D" uid="uid://ral5ss1ubn6j" path="res://Images/Items/Hands/Hand3_75_open.png" id="5_rfjv2"]
 [ext_resource type="Texture2D" uid="uid://bumhl5fapi8wh" path="res://Images/Backgrounds/Border.png" id="5_rku1e"]
+[ext_resource type="Texture2D" uid="uid://ubltayk2inog" path="res://Images/Items/Hands/Hand3_75_point.png" id="6_1phco"]
+[ext_resource type="Texture2D" uid="uid://bdfk08xb3ua6p" path="res://Images/Items/Hands/Hand3_75_run_2.png" id="6_nnt18"]
+[ext_resource type="Texture2D" uid="uid://q8lee0gactcy" path="res://Images/Items/Hands/Hand3_75_run_3.png" id="7_ewbju"]
 [ext_resource type="Texture2D" uid="uid://cysxcffiuvwa7" path="res://Images/Backgrounds/Background1.png" id="10_1phco"]
-[ext_resource type="Texture2D" uid="uid://ywhdx68m0app" path="res://Images/Items/Hands/Hand4_poke.png" id="10_nb51f"]
-[ext_resource type="Texture2D" uid="uid://cqkfnb4un7gn2" path="res://Images/Items/Hands/Hand4_closed.png" id="10_rfjv2"]
 [ext_resource type="Texture2D" uid="uid://b2ixulaoauhj6" path="res://Images/Backgrounds/Background3.JPG" id="11_rfjv2"]
 [ext_resource type="PackedScene" uid="uid://qbq3bbjiqlge" path="res://Scenes/Items/balloon.tscn" id="11_rku1e"]
 [ext_resource type="Script" uid="uid://c2bh8jb54t37g" path="res://Scripts/Gameplay/object_spawner.gd" id="14_1phco"]
@@ -259,6 +262,23 @@ size = Vector2(21.666687, 35.833344)
 [sub_resource type="CircleShape2D" id="CircleShape2D_rfjv2"]
 radius = 38.559124
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_85qyi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_nb51f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nnt18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ewbju")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rku1e"]
 size = Vector2(20, 79.51212)
 
@@ -298,8 +318,9 @@ libraries/ = SubResource("AnimationLibrary_ewbju")
 
 [node name="HandClosed" type="Sprite2D" parent="Hand" unique_id=135686971]
 texture_filter = 1
+position = Vector2(0.8333333, -5.086263e-05)
 scale = Vector2(2, 2)
-texture = ExtResource("10_rfjv2")
+texture = ExtResource("4_rku1e")
 
 [node name="HandClosedCollisionShape" type="CollisionShape2D" parent="Hand" unique_id=1478000859]
 position = Vector2(0.8333435, 7.916687)
@@ -315,6 +336,12 @@ collision_mask = 3
 position = Vector2(0, -3.333355)
 shape = SubResource("CircleShape2D_rfjv2")
 
+[node name="HandRun" type="AnimatedSprite2D" parent="Hand" unique_id=1489024292]
+position = Vector2(1.6666666, -6.6667175)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_85qyi")
+frame_progress = 0.749881
+
 [node name="HandOpen" type="Sprite2D" parent="Hand" unique_id=1569667590]
 visible = false
 texture_filter = 1
@@ -328,7 +355,7 @@ visible = false
 texture_filter = 1
 position = Vector2(-1.005, -10.005)
 scale = Vector2(2, 2)
-texture = ExtResource("10_nb51f")
+texture = ExtResource("6_1phco")
 
 [node name="HandPointArea2D" type="Area2D" parent="Hand" unique_id=1721993536]
 position = Vector2(0, 36.666615)

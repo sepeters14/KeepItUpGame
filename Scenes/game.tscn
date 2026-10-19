@@ -4,14 +4,17 @@
 [ext_resource type="Script" uid="uid://dfymxolpaj3qf" path="res://Scripts/Camera/camera_2d.gd" id="2_rfjv2"]
 [ext_resource type="Script" uid="uid://csu0r32qayl03" path="res://Scripts/UI/rich_text_label.gd" id="4_ldgsr"]
 [ext_resource type="Texture2D" uid="uid://bmewp8lykq6xg" path="res://Images/Items/Hands/Hand3_75_closed.png" id="4_rku1e"]
-[ext_resource type="Texture2D" uid="uid://d3ydsws50gylw" path="res://Images/Items/Hands/Hand3_75_run_1.png" id="5_nb51f"]
+[ext_resource type="Texture2D" uid="uid://ihjamlgt433v" path="res://Images/Items/Hands/Hand3_8_run_1.png" id="5_85qyi"]
 [ext_resource type="Script" uid="uid://0ojlp0d87l17" path="res://Scripts/Gameplay/hand.gd" id="5_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://ral5ss1ubn6j" path="res://Images/Items/Hands/Hand3_75_open.png" id="5_rfjv2"]
 [ext_resource type="Texture2D" uid="uid://bumhl5fapi8wh" path="res://Images/Backgrounds/Border.png" id="5_rku1e"]
 [ext_resource type="Texture2D" uid="uid://ubltayk2inog" path="res://Images/Items/Hands/Hand3_75_point.png" id="6_1phco"]
-[ext_resource type="Texture2D" uid="uid://bdfk08xb3ua6p" path="res://Images/Items/Hands/Hand3_75_run_2.png" id="6_nnt18"]
-[ext_resource type="Texture2D" uid="uid://q8lee0gactcy" path="res://Images/Items/Hands/Hand3_75_run_3.png" id="7_ewbju"]
+[ext_resource type="Texture2D" uid="uid://dt4li3432n6rw" path="res://Images/Items/Hands/Hand3_8_run_2.png" id="6_iivbl"]
+[ext_resource type="Texture2D" uid="uid://cm8jswc20br35" path="res://Images/Items/Hands/Hand3_8_run_3.png" id="7_7nbq1"]
+[ext_resource type="Texture2D" uid="uid://cnip1nqswlntj" path="res://Images/Items/Hands/Hand3_8_run_4.png" id="8_exi56"]
+[ext_resource type="Texture2D" uid="uid://cufbcnaxjlggu" path="res://Images/Items/Hands/Hand3_8_run_5.png" id="9_7t8sx"]
 [ext_resource type="Texture2D" uid="uid://cysxcffiuvwa7" path="res://Images/Backgrounds/Background1.png" id="10_1phco"]
+[ext_resource type="Texture2D" uid="uid://bh0f0g0rsacdl" path="res://Images/Items/Hands/Hand3_8_run_6.png" id="10_mg4q0"]
 [ext_resource type="Texture2D" uid="uid://b2ixulaoauhj6" path="res://Images/Backgrounds/Background3.JPG" id="11_rfjv2"]
 [ext_resource type="PackedScene" uid="uid://qbq3bbjiqlge" path="res://Scenes/Items/balloon.tscn" id="11_rku1e"]
 [ext_resource type="Script" uid="uid://c2bh8jb54t37g" path="res://Scripts/Gameplay/object_spawner.gd" id="14_1phco"]
@@ -266,13 +269,22 @@ radius = 38.559124
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_nb51f")
+"texture": ExtResource("5_85qyi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_nnt18")
+"texture": ExtResource("6_iivbl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_ewbju")
+"texture": ExtResource("7_7nbq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_exi56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7t8sx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mg4q0")
 }],
 "loop": true,
 "name": &"default",

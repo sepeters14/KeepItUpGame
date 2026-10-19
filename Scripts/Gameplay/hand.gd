@@ -12,7 +12,11 @@ var is_falling = false
 
 @onready var open_hand_knockback_area = $OpenHandKnockackArea
 
+@onready var hand_run_animated_sprite = $HandRun
 @onready var point_sprite = $HandPoint
+@onready var open_hand_sprite = $HandOpen
+@onready var closed_hand_sprite = $HandClosed
+
 @onready var point_area_image = $HandPointArea2D/PointArea
 @onready var point_area_2d = $HandPointArea2D
 @onready var left_check: RayCast2D = $LeftRayCast2D
@@ -33,10 +37,24 @@ func get_input():
 	var input_direction
 	if(Input.is_action_pressed("move_left")):
 		velocity.x = -move_speed
+		hand_run_animated_sprite.visible = true
+		point_sprite.visible = false
+		open_hand_sprite.visible = false
+		closed_hand_sprite.visible = false
+		hand_run_animated_sprite.flip_h = false
+		hand_run_animated_sprite.play("default")
 	elif(Input.is_action_pressed("move_right")):
 		velocity.x = move_speed
+		hand_run_animated_sprite.visible = true
+		point_sprite.visible = false
+		open_hand_sprite.visible = false
+		closed_hand_sprite.visible = false
+		hand_run_animated_sprite.flip_h = true
+		hand_run_animated_sprite.play("default")
 	else:
 		velocity.x = 0
+		hand_run_animated_sprite.visible = false
+		hand_run_animated_sprite.stop()
 	
 	if(Input.is_action_just_pressed("jump") and is_on_floor()):
 		velocity.y -= jump_force

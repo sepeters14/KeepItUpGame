@@ -37,24 +37,26 @@ func get_input():
 	var input_direction
 	if(Input.is_action_pressed("move_left")):
 		velocity.x = -move_speed
-		hand_run_animated_sprite.visible = true
-		point_sprite.visible = false
-		open_hand_sprite.visible = false
-		closed_hand_sprite.visible = false
 		hand_run_animated_sprite.flip_h = false
-		hand_run_animated_sprite.play("default")
+		if(playing_open_hand_anim == false):
+			animation_player.play("Movement")
 	elif(Input.is_action_pressed("move_right")):
 		velocity.x = move_speed
-		hand_run_animated_sprite.visible = true
-		point_sprite.visible = false
-		open_hand_sprite.visible = false
-		closed_hand_sprite.visible = false
 		hand_run_animated_sprite.flip_h = true
-		hand_run_animated_sprite.play("default")
+		if(playing_open_hand_anim == false):
+			animation_player.play("Movement")
 	else:
 		velocity.x = 0
-		hand_run_animated_sprite.visible = false
-		hand_run_animated_sprite.stop()
+		#animation_player.play("ClosedHand")
+		#hand_run_animated_sprite.visible = false
+		#hand_run_animated_sprite.stop()
+	
+	if(!Input.is_action_pressed("action_1") && !Input.is_action_pressed("action_2") 
+	&& !Input.is_action_pressed("move_left") && !Input.is_action_pressed("move_right")
+	&& !Input.is_action_pressed("jump")):
+		if(velocity.x == 0):
+			animation_player.play("ClosedHand")
+	
 	
 	if(Input.is_action_just_pressed("jump") and is_on_floor()):
 		velocity.y -= jump_force
@@ -83,10 +85,8 @@ func get_input():
 		if playing_open_hand_anim == false:
 			playing_open_hand_anim = true
 			animation_player.play("OpenHandSwing")
-				
 	else:
 		playing_open_hand_anim = false
-		animation_player.play("ClosedHand")
 	
 	if Input.is_action_just_released("action_2"):
 		point_area_image.visible = false

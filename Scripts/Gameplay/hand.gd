@@ -95,7 +95,7 @@ func get_input():
 			get_parent().screen_shake(10, 0.05)
 			AudioManager.play("res://Sounds/Balloon/794322__sadiquecat__helium-balloon-hit-kick-like.wav")
 			#point_area_2d.monitoring = true
-			object_in_area_2d.apply_knockback(Vector2.UP, knockback_force_pointer, knockback_duration)
+			object_in_area_2d.apply_knockback(Vector2.UP + Vector2(randf_range(-0.15, 0.15), 0), knockback_force_pointer, knockback_duration)
 			#point_sprite.global_position = object_in_area_2d.global_position
 			var pointer_hand_tween = create_tween()
 			pointer_hand_tween.set_trans(Tween.TRANS_SINE)
@@ -161,7 +161,7 @@ func _on_area_2d_body_exited(body):
 
 func _on_open_hand_knockack_area_body_entered(body):
 	if body.is_in_group("object"):
-		var knockback_direction = (body.global_position - global_position).normalized()
+		var knockback_direction = (body.global_position - global_position + Vector2(randf_range(-0.2, 0.2), 0)).normalized()
 		body.apply_knockback(knockback_direction, knockback_force_swing, knockback_duration)
 		AudioManager.play("res://Sounds/Score/ScoreUpV1.mp3")
 		AudioManager.play("res://Sounds/Balloon/794322__sadiquecat__helium-balloon-hit-kick-like.wav")

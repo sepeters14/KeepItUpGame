@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://b8pch8a2lcawn"
 
 Global="*uid://cwy745ng4o7t"
 AudioManager="*uid://ptbldinwp82o"
+SaveManager="*uid://gjk2chpvv1wq"
 
 [dotnet]
 

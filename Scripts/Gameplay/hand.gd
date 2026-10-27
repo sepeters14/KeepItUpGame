@@ -23,6 +23,7 @@ var is_falling = false
 @onready var right_check: RayCast2D = $RightRayCast2D
 
 @onready var leave_for_points_area_2d = $LeaveForPointsArea
+@onready var high_score = Global.high_score
 
 @export var gravity = 20
 @onready var jump_force = Global.normal_jump_force
@@ -104,7 +105,15 @@ func get_input():
 			await pointer_hand_tween.finished
 			point_area_2d.monitoring = false
 			Global.score = Global.score + 1
-			AudioManager.play("res://Sounds/Score/ScoreUpV1.mp3")
+			if Global.score > high_score:
+				high_score = Global.score
+				# TODO Will need to do this at end of a session in the future
+				#might want to utilize groups https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html
+				Global.high_score = high_score
+				print("HIGH SCORE IS !!1!!", high_score)
+				print("HIGH SCORE IS !!2!!", Global.high_score)
+				SaveManager.save_game()
+			AudioManager.play("reds://Sounds/Score/ScoreUpV1.mp3")
 			await get_tree().create_timer(2).timeout
 			#leave_for_points_area_2d.monitoring = true
 		else:

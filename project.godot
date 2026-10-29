@@ -22,8 +22,8 @@ buses/default_bus_layout="uid://b8pch8a2lcawn"
 [autoload]
 
 Global="*uid://cwy745ng4o7t"
-AudioManager="*uid://ptbldinwp82o"
 SaveManager="*uid://gjk2chpvv1wq"
+AudioManager="*uid://ptbldinwp82o"
 
 [dotnet]
 
@@ -33,12 +33,19 @@ project/assembly_name="KeepUp"
 
 folder_colors={
 "res://Images/": "yellow",
+"res://Images/Items/": "green",
+"res://Images/Objects/": "red",
 "res://Scenes/": "purple",
 "res://Scenes/Audio/": "orange",
 "res://Scenes/Items/": "green",
+"res://Scenes/Objects/": "red",
 "res://Scripts/": "pink",
 "res://Sounds/": "orange"
 }
+
+[global_group]
+
+saveable="Nodes that have information that could be saved"
 
 [input]
 

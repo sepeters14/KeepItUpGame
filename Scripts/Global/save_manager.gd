@@ -10,43 +10,64 @@ func _ready():
 	load_game()
 
 func save_game():
-	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	if file == null:
-		push_error("failed to create save file: ", FileAccess.get_open_error())
-		return
-	# TODO (WHAT I SHOULD DO) will go through and check for nodes in a saving group and 
-	# then update the values in save function on those nodes https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html
-	var save_data := {
-		"high_score" : Global.high_score,
-	}
-	var json_string := JSON.stringify(save_data, "\t")
-	print("HI SCO", save_data["high_score"])
-	file.store_string(json_string)
-	file.close()
-	print("Game saved successfully")
+	var save_file = FileAccess.open("user://savegame.json", FileAccess.WRITE)
+	var save_nodes = get_tree().get_nodes_in_group("saveable")
+	for node in save_nodes:
+		# Check the node is an instanced scene so it can be instanced again during load.
+		if node.scene_file_path.is_empty():
+			print("saveable node '%s' is not an instanced scene, skipped" % node.name)
+			continue
+		# Check the node has a save function.
+		if !node.has_method("save"):
+			print("saveable node '%s' is missing a save() function, skipped" % node.name)
+			continue
+		# Call the node's save function.
+		var node_data = node.call("save")
+		# JSON provides a static method to serialized JSON string.
+		var json_string = JSON.stringify(node_data)
+		# Store the save dictionary as a new line in the save file.
+		save_file.store_line(json_string)
+		print("Game saved successfully")
 
 func load_game():
-	if !FileAccess.file_exists(SAVE_PATH):
-		print("No save file found")
-		return
-	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
-	if file == null:
-		push_error("failed to open saved file", FileAccess.get_open_error())
-		return
-	
-	var json_string := file.get_as_text()
-	file.close()
-	
-	var json := JSON.new()
-	var parse_result = json.parse(json_string)
-	
-	if parse_result == OK:
-		var loaded_data = json.data
-		if typeof(loaded_data) == TYPE_DICTIONARY:
-			for key in loaded_data:
-				save_data[key] = loaded_data[key]
-				print("Game Load Succesful")
-		else:
-			push_error("Save file format invalid")
-	else:
-		push_error("JSON parse error: ", json.get_error_message(), " at line ", json.get_error_line())
+	if not FileAccess.file_exists("user://savegame.json"):
+		# We don't have a save to load.
+		save_game()
+		
+
+	# We need to revert the game state so we're not cloning objects
+	# during loading. This will vary wildly depending on the needs of a
+	# project, so take care with this step.
+	# For our example, we will accomplish this by deleting saveable objects.
+	var save_nodes = get_tree().get_nodes_in_group("saveable")
+	for i in save_nodes:
+		i.queue_free()
+
+	# Load the file line by line and process that dictionary to restore
+	# the object it represents.
+	var save_file = FileAccess.open("user://savegame.json", FileAccess.READ)
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
+
+		# Creates the helper class to interact with JSON.
+		var json = JSON.new()
+
+		# Check if there is any error while parsing the JSON string, skip in case of failure.
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+
+		# Get the data from the JSON object.
+		var node_data = json.data
+
+		# Firstly, we need to create the object and add it to the tree and set its position.
+		var new_object = load(node_data["filename"]).instantiate()
+		get_node(node_data["parent"]).add_child(new_object)
+
+		# Now we set the remaining variables.
+		for i in node_data.keys():
+			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y":
+				continue
+			print("LOAD DATA: ",i, " ", node_data[i])
+			new_object.set(i, node_data[i])

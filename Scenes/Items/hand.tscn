@@ -418,7 +418,7 @@ size = Vector2(20, 79.51212)
 radius = 42.666687
 height = 96.0
 
-[node name="Hand" type="CharacterBody2D" unique_id=593129935 groups=["item"]]
+[node name="Hand" type="CharacterBody2D" unique_id=593129935 groups=["item", "saveable"]]
 scale = Vector2(1.2, 1.2)
 collision_layer = 3
 script = ExtResource("1_sucl8")

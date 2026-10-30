@@ -2,10 +2,12 @@ extends Node2D
 
 @export var object_to_spawn: PackedScene
 
+@onready var level_info_node = %LevelInfo
 @onready var spawn_points = self.get_children()
 
 func spawn_object():
 	var object_instance = object_to_spawn.instantiate()
+	object_instance.level_info = level_info_node
 	object_instance.global_position = get_spawn_position()
 	get_tree().current_scene.add_child(object_instance)
 	

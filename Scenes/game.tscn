@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b5ufeoqgycoet" path="res://Scripts/Global/game.gd" id="1_o5yvi"]
 [ext_resource type="Script" uid="uid://dfymxolpaj3qf" path="res://Scripts/Camera/camera_2d.gd" id="2_rfjv2"]
 [ext_resource type="PackedScene" uid="uid://cqroq8ffj5fy1" path="res://Scenes/Items/hand.tscn" id="3_1l0tm"]
+[ext_resource type="Script" uid="uid://g5l0tenstwxx" path="res://Scripts/Saving/LevelInfo/level_info.gd" id="3_h4fw4"]
 [ext_resource type="Texture2D" uid="uid://bumhl5fapi8wh" path="res://Images/Backgrounds/Border.png" id="5_rku1e"]
 [ext_resource type="Script" uid="uid://dfbxc1ji6w81k" path="res://Scripts/Gameplay/item_spawner.gd" id="6_v158k"]
 [ext_resource type="Texture2D" uid="uid://b2ixulaoauhj6" path="res://Images/Backgrounds/Background3.JPG" id="11_rfjv2"]
@@ -29,6 +30,10 @@ position = Vector2(575, 518)
 script = ExtResource("2_rfjv2")
 
 [node name="Level" type="Node2D" parent="." unique_id=969735533]
+
+[node name="LevelInfo" type="Node" parent="Level" unique_id=1880764470 groups=["saveable"]]
+unique_name_in_owner = true
+script = ExtResource("3_h4fw4")
 
 [node name="ObjectSpawner" type="Node2D" parent="Level" unique_id=700085288]
 position = Vector2(-25, 380)
@@ -67,9 +72,9 @@ script = ExtResource("6_v158k")
 object_to_spawn = ExtResource("3_1l0tm")
 
 [node name="SpawnPoints" type="Node2D" parent="Level/ItemSpawner" unique_id=212087019]
+position = Vector2(600, 349)
 
 [node name="Point1" type="Marker2D" parent="Level/ItemSpawner/SpawnPoints" unique_id=1519871131]
-position = Vector2(200, -150)
 
 [node name="Floor" type="StaticBody2D" parent="Level" unique_id=1622551466 groups=["floor"]]
 position = Vector2(577, 654)

@@ -8,6 +8,9 @@ var number_of_jumps = 0
 var just_wall_jumped = false
 var is_falling = false
 
+var level_info: Node
+var score = 0
+
 @onready var animation_player = $AnimationPlayer
 
 @onready var open_hand_knockback_area = $OpenHandKnockackArea
@@ -23,7 +26,6 @@ var is_falling = false
 @onready var right_check: RayCast2D = $RightRayCast2D
 
 @onready var leave_for_points_area_2d = $LeaveForPointsArea
-@onready var high_score = Global.high_score
 
 @export var gravity = 20
 @onready var jump_force = Global.normal_jump_force
@@ -74,7 +76,6 @@ func get_input():
 		velocity.y = gravity * 2
 	
 	
-	
 	if Input.is_action_pressed("action_2"):
 		point_area_2d.monitoring = true
 		playing_open_hand_anim = false
@@ -104,16 +105,7 @@ func get_input():
 			pointer_hand_tween.tween_property(self, "global_position", object_in_area_2d.global_position, 0.1)
 			await pointer_hand_tween.finished
 			point_area_2d.monitoring = false
-			Global.score = Global.score + 1
-			if Global.score > high_score:
-				high_score = Global.score
-				# TODO Will need to do this at end of a session in the future
-				#might want to utilize groups https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html
-				Global.high_score = high_score
-				print("HIGH SCORE IS !!1!!", high_score)
-				print("HIGH SCORE IS !!2!!", Global.high_score)
-				SaveManager.save_game()
-			AudioManager.play("reds://Sounds/Score/ScoreUpV1.mp3")
+			increase_score(1)
 			await get_tree().create_timer(2).timeout
 			#leave_for_points_area_2d.monitoring = true
 		else:
@@ -149,6 +141,15 @@ func _physics_process(delta):
 	move_and_slide()
 	print(point_area_2d.monitoring)
 
+func increase_score(amount: int):
+	AudioManager.play("reds://Sounds/Score/ScoreUpV1.mp3")
+	score = score + amount
+	if score > level_info.high_score:
+		level_info.high_score = score
+		print("HIGH SCORE IS !!1!!", level_info.high_score)
+		# TODO Will need to do this at end of a session in the future
+		level_info.save()
+
 #func _input(event):
 	#if event.get_relative().x > 0:
 		##print("Moving right")
@@ -172,10 +173,9 @@ func _on_open_hand_knockack_area_body_entered(body):
 	if body.is_in_group("object"):
 		var knockback_direction = (body.global_position - global_position + Vector2(randf_range(-0.2, 0.2), 0)).normalized()
 		body.apply_knockback(knockback_direction, knockback_force_swing, knockback_duration)
-		AudioManager.play("res://Sounds/Score/ScoreUpV1.mp3")
 		AudioManager.play("res://Sounds/Balloon/794322__sadiquecat__helium-balloon-hit-kick-like.wav")
 		get_parent().screen_shake(2, 0.05)
-		Global.score = Global.score + 1
+		increase_score(1)
 
 func _on_hand_point_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("object"):

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="KeepUp"
-run/main_scene="uid://cusaopp38lepo"
+run/main_scene="uid://dmsourwx32jsq"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Images/icon.svg"
 

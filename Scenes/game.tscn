@@ -35,6 +35,13 @@ script = ExtResource("2_rfjv2")
 unique_name_in_owner = true
 script = ExtResource("3_h4fw4")
 
+[node name="HighScoreLabel" type="Label" parent="Level/LevelInfo" unique_id=1150924393]
+offset_left = 16.0
+offset_top = 205.0
+offset_right = 123.0
+offset_bottom = 228.0
+text = "High-Score: 0"
+
 [node name="ObjectSpawner" type="Node2D" parent="Level" unique_id=700085288]
 position = Vector2(-25, 380)
 script = ExtResource("14_1phco")

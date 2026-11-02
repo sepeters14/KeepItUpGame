@@ -189,3 +189,8 @@ func rotate_hand_right():
 	rotation = deg_to_rad(14.0)
 func rotate_hand_left():
 	rotation = deg_to_rad(-14.0)
+
+#Getters
+func get_score():
+	return score
+#Setters

@@ -143,10 +143,9 @@ func _physics_process(delta):
 
 func increase_score(amount: int):
 	AudioManager.play("reds://Sounds/Score/ScoreUpV1.mp3")
-	score = score + amount
-	if score > level_info.high_score:
-		level_info.high_score = score
-		print("HIGH SCORE IS !!1!!", level_info.high_score)
+	level_info.score = level_info.score + amount
+	if level_info.score > level_info.high_score:
+		level_info.high_score = level_info.score
 		# TODO Will need to do this at end of a session in the future
 		level_info.save()
 
@@ -192,5 +191,6 @@ func rotate_hand_left():
 
 #Getters
 func get_score():
-	return score
+	level_info.update_high_score_check()
+	return level_info.score
 #Setters
